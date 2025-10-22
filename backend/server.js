@@ -20,7 +20,19 @@ app.get("/",(req,res) => {
   res.send("Willkommen")
 })
 
+// zentraler Error Handler
+app.use( (err, req, res, next) => {
+  const status = err.status || 500;
 
+  // Meldung die an Frontend zurückgeschickt wird
+  const payload = {
+    error: true,
+    message: err.message || "Internal Server Error"
+  }
+
+  res.status(status).send(payload)
+
+} )
 
 
 app.listen(PORT, ()=>{
