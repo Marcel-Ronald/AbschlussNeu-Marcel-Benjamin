@@ -1,5 +1,6 @@
 import express from "express"
 import cors from "cors"
+import { userLogin } from "./controller/userController.js"
 
 const app = express()
 const PORT = 3001
@@ -19,6 +20,10 @@ app.get("/",(req,res) => {
   // Antwort zurückschicken
   res.send("Willkommen")
 })
+
+// Login Route
+app.post("/login", userLogin)
+
 
 // zentraler Error Handler
 app.use( (err, req, res, next) => {
