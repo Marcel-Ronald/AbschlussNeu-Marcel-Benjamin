@@ -32,7 +32,10 @@ export function UserContextProvider({children}){
     )
 }
 
-// Hilfsfunktion (Hook) um später auf die Daten mit useUser() zugreifen zu können
+
+// Hilfsfunktion (Hook) um später auf die Daten mit useUser() zugreifen zu können, nachfolgend Kommentar um Linter Warnung auszuschalten
+
+// eslint-disable-next-line react-refresh/only-export-components
 export function useUser(){
     return useContext(UserContext)
 }
