@@ -2,7 +2,7 @@ import createHttpError from "http-errors"
 // import prisma from "../prisma/client.js"
 
 
-export function userLogin(req,res, next){
+export async function userLogin(req,res, next){
     // username und password aus body auslesen
     
     // Wenn username oder password fehlen, wird Fehler geschickt
