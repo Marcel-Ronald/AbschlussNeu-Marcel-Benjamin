@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,4 +5,44 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Diet {
+  id           Int     @id @default(autoincrement())
+  diet_type    String  @db.VarChar(100)
+  prey_example String
+  sharks       Shark[]
+}
+
+model Habitat {
+  id                Int      @id @default(autoincrement())
+  region            String   @db.VarChar(100)
+  temperature_range String   @db.VarChar(50)
+  depth_range_m     String   @db.VarChar(50)
+  sharks            Shark[]
+}
+
+model Shark {
+  id                Int           @id @default(autoincrement())
+  name              String        @db.VarChar(100)
+  scientific_name   String        @db.VarChar(150)
+  average_length_m  Decimal       @db.Decimal(10, 2)
+  average_weight_kg Decimal       @db.Decimal(10, 2)
+  lifespan_years    BigInt
+  habitat_id        Int
+  diet_id           Int
+  habitat           Habitat       @relation(fields: [habitat_id], references: [id], map: "sharks_habitat_id_foreign")
+  diet              Diet          @relation(fields: [diet_id], references: [id], map: "sharks_diet_id_foreign")
+  observations      Observation[]
+}
+
+model Observation {
+  id            Int      @id @default(autoincrement())
+  shark_id      Int
+  location      String   @db.VarChar(150)
+  date_observed DateTime @db.Date
+  length_m      Decimal  @db.Decimal(10, 2)
+  weight_kg     Decimal  @db.Decimal(10, 2)
+  notes         String
+  shark         Shark    @relation(fields: [shark_id], references: [id], map: "observations_shark_id_foreign")
 }

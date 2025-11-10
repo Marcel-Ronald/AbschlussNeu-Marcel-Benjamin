@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import { userLogin } from "./controller/userController.js"
+//import { userLogin } from "./controller/userController.js"
 
 const app = express()
 const PORT = 3001
@@ -15,14 +15,14 @@ app.use( express.json() )
 // APIs definieren
 app.get("/",(req,res) => {
   // Hier Logik die laufen soll, wenn Route aufgerufen wird   
-  console.log("Hallo ich bin im Backend");
+  //console.log("Hallo ich bin im Backend");
   
   // Antwort zurückschicken
   res.send("Willkommen")
 })
 
 // Login Route
-app.post("/login", userLogin)
+//app.post("/login", userLogin)
 
 
 // zentraler Error Handler
