@@ -1,0 +1,158 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #2E8BC0;
+}
+
+.app {
+  text-align: center;
+  padding: 3rem;
+}
+
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1rem;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-wrap: wrap;
+}
+
+.navbar-left,
+.navbar-center,
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-left {
+  flex: 1 1 150px;
+}
+
+
+.navbar-center {
+  flex: 2 1 300px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.navbar-right {
+  flex: 1 1 150px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.welcome {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0.3rem 0 0 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.nav-links li {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-links li:hover {
+  color: #0077cc;
+  transform: scale(1.1);
+}
+
+.navbar-right input {
+  width: 200px;
+  padding: 0.45rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .navbar-left,
+  .navbar-center,
+  .navbar-right {
+    flex: unset;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .navbar-right input {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+
+.page-title {
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+.page-text {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  padding: 0 2rem;
+}
+
+.shark-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  padding: 2rem;
+}
+
+.shark-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 1rem;
+  width: 100%;
+  max-width: 250px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.shark-card:hover {
+  transform: scale(1.05);
+}
+
+.shark-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
