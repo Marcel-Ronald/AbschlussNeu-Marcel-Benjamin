@@ -1,0 +1,1 @@
+INSERT INTO "Shark" (name, scientific_name) VALUES ("Hammerhai", "HH"), ("Weißer Hai", "WH");
