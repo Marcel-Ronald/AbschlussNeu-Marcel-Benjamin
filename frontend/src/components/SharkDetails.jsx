@@ -541,6 +541,11 @@ const SharkDetails = () => {
                 src={shark.image}
                 alt={shark.name}
                 className="shark-info-image"
+                onError={(e) => {
+                  e.target.src =
+                    "https://via.placeholder.com/300x200/0077cc/ffffff?text=" +
+                    encodeURIComponent(shark.name);
+                }}
               />
               <h2 className="shark-info-name">{shark.name}</h2>
             </div>
