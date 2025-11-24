@@ -35,7 +35,10 @@ app.get("/sharks", async (req,res) => {
   console.log(req.query.searchterm);
   const sharks = await prisma.shark.findMany({ 
     where: {
-      name: {contains: req.query.searchterm},
+      name: {
+        contains: req.query.searchterm,
+        mode: 'insensitive'
+      },
     }
   });
   
