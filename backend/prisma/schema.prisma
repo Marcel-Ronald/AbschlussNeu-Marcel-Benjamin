@@ -10,7 +10,7 @@ datasource db {
 model Diet {
   id           Int     @id @default(autoincrement())
   diet_type    String  @db.VarChar(100)
-  prey_example String
+  prey_example String  @db.Text
   sharks       Shark[]
 }
 
@@ -48,6 +48,6 @@ model Observation {
   date_observed DateTime @db.Date
   length_m      Decimal  @db.Decimal(10, 2)
   weight_kg     Decimal  @db.Decimal(10, 2)
-  notes         String
+  notes         String   @db.Text
   shark         Shark    @relation(fields: [shark_id], references: [id], map: "observations_shark_id_foreign")
 }
