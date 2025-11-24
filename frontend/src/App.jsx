@@ -63,7 +63,7 @@ const App = () => {
         </div>
 
         <div className="navbar-center">
-          <h2 className="welcome">Willkommen im Hai Wiki</h2>
+          <h2 className="welcome">Willkommen im Hai Wiki.</h2>
           <ul className="nav-links">
             <li onClick={() => setActivePage("home")}>Startseite</li>
             <li onClick={() => setActivePage("danger-zones")}>Gefahrenzonen</li>
