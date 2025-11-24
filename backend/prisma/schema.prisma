@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL") // Prisma 6 - funktioniert einwandfrei, Warnung kann ignoriert werden
+  url      = env("DATABASE_URL")
 }
 
 model Diet {
@@ -15,10 +15,10 @@ model Diet {
 }
 
 model Habitat {
-  id                Int     @id @default(autoincrement())
-  region            String  @db.VarChar(100)
-  temperature_range String  @db.VarChar(50)
-  depth_range_m     String  @db.VarChar(50)
+  id                Int      @id @default(autoincrement())
+  region            String   @db.VarChar(100)
+  temperature_range String   @db.VarChar(50)
+  depth_range_m     String   @db.VarChar(50)
   sharks            Shark[]
 }
 
@@ -31,11 +31,6 @@ model Shark {
   lifespan_years    BigInt
   habitat_id        Int
   diet_id           Int
-  geburtsort        String        @db.Text
-  nahrung           String        @db.Text
-  gefahr            String        @db.VarChar(255)
-  gewohnheiten      String        @db.Text
-  image             String        @db.VarChar(255)
   habitat           Habitat       @relation(fields: [habitat_id], references: [id], map: "sharks_habitat_id_foreign")
   diet              Diet          @relation(fields: [diet_id], references: [id], map: "sharks_diet_id_foreign")
   observations      Observation[]
