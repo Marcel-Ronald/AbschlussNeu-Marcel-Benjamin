@@ -3,51 +3,51 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
 model Diet {
   id           Int     @id @default(autoincrement())
-  diet_type    String  @db.VarChar(100)
+  diet_type    String
   prey_example String
   sharks       Shark[]
 }
 
 model Habitat {
   id                Int      @id @default(autoincrement())
-  region            String   @db.VarChar(100)
-  temperature_range String   @db.VarChar(50)
-  depth_range_m     String   @db.VarChar(50)
+  region            String
+  temperature_range String
+  depth_range_m     String
   sharks            Shark[]
 }
 
 model Shark {
   id                Int           @id @default(autoincrement())
-  name              String        @db.VarChar(100)
-  scientific_name   String        @db.VarChar(150)
-  average_length_m  Decimal       @db.Decimal(10, 2)
-  average_weight_kg Decimal       @db.Decimal(10, 2)
-  lifespan_years    BigInt
+  name              String
+  scientific_name   String
+  average_length_m  Float
+  average_weight_kg Float
+  lifespan_years    Int
   habitat_id        Int
   diet_id           Int
-  geburtsort        String        @db.Text
-  nahrung           String        @db.Text
-  gefahr            String        @db.VarChar(255)
-  gewohnheiten      String        @db.Text
-  image             String        @db.VarChar(255)
-  habitat           Habitat       @relation(fields: [habitat_id], references: [id], map: "sharks_habitat_id_foreign")
-  diet              Diet          @relation(fields: [diet_id], references: [id], map: "sharks_diet_id_foreign")
+  geburtsort        String
+  nahrung           String
+  gefahr            String
+  gewohnheiten      String
+  image             String
+  habitat           Habitat       @relation(fields: [habitat_id], references: [id])
+  diet              Diet          @relation(fields: [diet_id], references: [id])
   observations      Observation[]
 }
 
 model Observation {
   id            Int      @id @default(autoincrement())
   shark_id      Int
-  location      String   @db.VarChar(150)
-  date_observed DateTime @db.Date
-  length_m      Decimal  @db.Decimal(10, 2)
-  weight_kg     Decimal  @db.Decimal(10, 2)
+  location      String
+  date_observed DateTime
+  length_m      Float
+  weight_kg     Float
   notes         String
-  shark         Shark    @relation(fields: [shark_id], references: [id], map: "observations_shark_id_foreign")
+  shark         Shark    @relation(fields: [shark_id], references: [id])
 }
