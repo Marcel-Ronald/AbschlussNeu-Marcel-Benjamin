@@ -6,6 +6,7 @@ const HomePage = ({ sharks, applyFilter }) => {
   const [sharkOfTheDay, setSharkOfTheDay] = useState(null);
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
   const [selectedHotspot, setSelectedHotspot] = useState(null);
+  const [animatedStats, setAnimatedStats] = useState([0, 0, 0, 0]);
 
   const facts = [
     "Haie existieren seit über 450 Millionen Jahren - älter als Bäume!",
@@ -19,10 +20,10 @@ const HomePage = ({ sharks, applyFilter }) => {
   ];
 
   const statistics = [
-    { number: "48", label: "Haiarten in unserer Datenbank" },
-    { number: "450M", label: "Jahre Evolution" },
-    { number: "500+", label: "Haiarten weltweit" },
-    { number: "12", label: "Potentiell gefährliche Arten" },
+    { number: 48, label: "Haiarten in unserer Datenbank", suffix: "" },
+    { number: 450, label: "Jahre Evolution", suffix: "M" },
+    { number: 500, label: "Haiarten weltweit", suffix: "+" },
+    { number: 12, label: "Potentiell gefährliche Arten", suffix: "" },
   ];
 
   const popularSearches = [
@@ -126,6 +127,36 @@ const HomePage = ({ sharks, applyFilter }) => {
     return () => clearInterval(factInterval);
   }, [sharks]);
 
+  // Animated counter effect for statistics
+  useEffect(() => {
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const stepDuration = duration / steps;
+
+    statistics.forEach((stat, index) => {
+      let currentStep = 0;
+      const increment = stat.number / steps;
+
+      const timer = setInterval(() => {
+        currentStep++;
+        const newValue = Math.min(
+          Math.floor(increment * currentStep),
+          stat.number
+        );
+
+        setAnimatedStats((prev) => {
+          const newStats = [...prev];
+          newStats[index] = newValue;
+          return newStats;
+        });
+
+        if (currentStep >= steps) {
+          clearInterval(timer);
+        }
+      }, stepDuration);
+    });
+  }, []);
+
   const handleQuickLink = (filter) => {
     applyFilter(filter);
   };
@@ -163,7 +194,10 @@ const HomePage = ({ sharks, applyFilter }) => {
         <div className="stats-grid">
           {statistics.map((stat, index) => (
             <div key={index} className="stat-card">
-              <div className="stat-number">{stat.number}</div>
+              <div className="stat-number">
+                {animatedStats[index]}
+                {stat.suffix}
+              </div>
               <div className="stat-label">{stat.label}</div>
             </div>
           ))}

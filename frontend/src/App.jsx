@@ -9,6 +9,8 @@ import SharkDangerZones from "./components/SharkDangerZones";
 import SharkDetails from "./components/SharkDetails";
 import SharkQuiz from "./components/SharkQuiz";
 import Footer from "./components/Footer";
+import BackToTop from "./components/BackToTop";
+import FilterBar from "./components/FilterBar";
 import "./styles.css";
 
 const App = () => {
@@ -179,13 +181,23 @@ const App = () => {
           <Route path="/about" element={<SharkDetails />} />
           <Route
             path="/gallery"
-            element={<SharkList sharks={filteredSharks} />}
+            element={
+              <>
+                <FilterBar
+                  sharks={sharks}
+                  filterType={filterType}
+                  onFilterChange={setFilterType}
+                />
+                <SharkList sharks={filteredSharks} loading={loading} />
+              </>
+            }
           />
           <Route path="/quiz" element={<SharkQuiz />} />
         </Routes>
       )}
 
       <Footer />
+      <BackToTop />
     </div>
   );
 };
