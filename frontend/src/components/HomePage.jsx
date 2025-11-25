@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const HomePage = ({ setActivePage, sharks, applyFilter }) => {
+const HomePage = ({ sharks, applyFilter }) => {
+  const navigate = useNavigate();
   const [sharkOfTheDay, setSharkOfTheDay] = useState(null);
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
   const [selectedHotspot, setSelectedHotspot] = useState(null);
@@ -142,13 +144,13 @@ const HomePage = ({ setActivePage, sharks, applyFilter }) => {
           <div className="hero-buttons">
             <button
               className="btn-primary"
-              onClick={() => setActivePage("gallery")}
+              onClick={() => navigate("/gallery")}
             >
               Alle Haie entdecken
             </button>
             <button
               className="btn-secondary"
-              onClick={() => setActivePage("about")}
+              onClick={() => navigate("/about")}
             >
               Mehr erfahren
             </button>
@@ -201,7 +203,7 @@ const HomePage = ({ setActivePage, sharks, applyFilter }) => {
               <p>{sharkOfTheDay.description}</p>
               <button
                 className="btn-learn-more"
-                onClick={() => setActivePage("about")}
+                onClick={() => navigate("/about")}
               >
                 Mehr erfahren →
               </button>
@@ -218,7 +220,7 @@ const HomePage = ({ setActivePage, sharks, applyFilter }) => {
             <div
               key={index}
               className="featured-card"
-              onClick={() => setActivePage("gallery")}
+              onClick={() => navigate("/gallery")}
             >
               <img
                 src={shark.image}
@@ -266,7 +268,7 @@ const HomePage = ({ setActivePage, sharks, applyFilter }) => {
             <span
               key={index}
               className="search-tag"
-              onClick={() => setActivePage("gallery")}
+              onClick={() => navigate("/gallery")}
             >
               {search}
             </span>
@@ -310,7 +312,7 @@ const HomePage = ({ setActivePage, sharks, applyFilter }) => {
                     </div>
                     <button
                       className="btn-explore-habitat"
-                      onClick={() => setActivePage("habitats")}
+                      onClick={() => navigate("/habitats")}
                     >
                       Lebensräume erkunden →
                     </button>
@@ -334,7 +336,7 @@ const HomePage = ({ setActivePage, sharks, applyFilter }) => {
             Kannst du verschiedene Haiarten identifizieren? Nimm an unserem Quiz
             teil!
           </p>
-          <button className="btn-quiz" onClick={() => setActivePage("quiz")}>
+          <button className="btn-quiz" onClick={() => navigate("/quiz")}>
             Quiz starten
           </button>
         </div>
@@ -375,7 +377,7 @@ const HomePage = ({ setActivePage, sharks, applyFilter }) => {
             Tauche ein in unsere umfangreiche Datenbank mit 48 faszinierenden
             Haiarten
           </p>
-          <button className="btn-cta" onClick={() => setActivePage("gallery")}>
+          <button className="btn-cta" onClick={() => navigate("/gallery")}>
             Jetzt entdecken →
           </button>
         </div>
