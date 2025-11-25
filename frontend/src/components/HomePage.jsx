@@ -136,7 +136,7 @@ const HomePage = ({ sharks, applyFilter }) => {
       <section className="hero-section">
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          <h1 className="hero-title">Willkommen im Hai-Wiki</h1>
+          <h1 className="hero-title">Willkommen</h1>
           <p className="hero-subtitle">
             Entdecke die faszinierende Welt der Haie - von den Tiefen der Ozeane
             bis zu den Küstengewässern
