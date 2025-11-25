@@ -135,19 +135,19 @@ const App = () => {
         </div>
 
         <div className="navbar-center">
-          <h2 className="welcome">Willkommen im Hai Wiki</h2>
+          <h2 className="welcome"></h2>
           <ul className="nav-links">
             <li>
               <Link to="/">Startseite</Link>
+            </li>
+            <li>
+              <Link to="/about">Über Haie</Link>
             </li>
             <li>
               <Link to="/habitats">Lebensräume</Link>
             </li>
             <li>
               <Link to="/danger-zones">Gefahrenzonen</Link>
-            </li>
-            <li>
-              <Link to="/about">Über Haie</Link>
             </li>
             <li>
               <Link to="/gallery">Galerie</Link>

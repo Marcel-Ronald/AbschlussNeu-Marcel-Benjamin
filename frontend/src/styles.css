@@ -538,25 +538,33 @@ body {
   gap: 1rem;
   margin: 0;
   padding: 1rem 2rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   background: rgba(255, 255, 255, 0.25);
   border-radius: 20px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(0, 0, 0, 0.5);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   justify-content: center;
+  min-width: fit-content;
 }
 
 .nav-links li {
   cursor: pointer;
   transition: all 0.3s ease;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.5rem;
   border-radius: 10px;
   color: white;
   font-weight: 600;
   font-size: 1.1rem;
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  display: block;
 }
 
 .nav-links li:hover {
@@ -1195,16 +1203,28 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  padding: 1rem;
+  padding: 3rem;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.85),
+      rgba(255, 255, 255, 0.85)
+    ),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%230077cc" width="1200" height="600"/><path fill="%2390c8e8" d="M100,150 L150,120 L200,130 L250,110 L300,140 L350,120 L400,150 L450,130 L500,160 L550,140 L600,150 L650,130 L700,160 L750,140 L800,150 L850,130 L900,160 L950,140 L1000,150 L1050,130 L1100,160 L1100,200 L1050,210 L1000,200 L950,220 L900,200 L850,210 L800,200 L750,220 L700,200 L650,210 L600,200 L550,220 L500,200 L450,210 L400,200 L350,220 L300,200 L250,210 L200,200 L150,220 L100,200 Z"/><path fill="%2360b0d8" d="M200,250 L250,230 L300,260 L350,240 L400,270 L450,250 L500,280 L550,260 L600,270 L650,250 L700,280 L750,260 L800,270 L850,250 L900,280 L950,260 L1000,270 L1000,320 L950,310 L900,330 L850,310 L800,330 L750,310 L700,330 L650,310 L600,330 L550,310 L500,330 L450,310 L400,330 L350,310 L300,330 L250,310 L200,330 Z"/><circle fill="%23ff6b35" cx="200" cy="180" r="8"/><circle fill="%23ff6b35" cx="450" cy="240" r="8"/><circle fill="%23ff6b35" cx="700" cy="200" r="8"/><circle fill="%23ff6b35" cx="900" cy="260" r="8"/><circle fill="%23ff6b35" cx="350" cy="290" r="8"/><circle fill="%23ff6b35" cx="600" cy="320" r="8"/></svg>');
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  box-shadow: inset 0 0 30px rgba(0, 119, 204, 0.1);
+  position: relative;
 }
 
 .hotspot-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-top: 4px solid #0077cc;
+  border: 2px solid rgba(0, 119, 204, 0.3);
 }
 
 .hotspot-card:hover {
@@ -1440,7 +1460,7 @@ body {
 .beach-scene {
   position: relative;
   width: 100%;
-  min-height: 200px;
+  min-height: 360px;
   background: linear-gradient(to bottom, #0066b3 0%, #0077cc 50%, #1a8ccc 100%);
   border-radius: 20px;
 }
@@ -1486,44 +1506,102 @@ body {
 /* Footer Content */
 .footer-content {
   position: absolute;
-  bottom: 50px;
+  bottom: 65px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 1rem;
+  align-items: stretch;
+  padding: 1.2rem 1rem 1rem 1rem;
   z-index: 3;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 1.5rem;
-  width: 90%;
-  max-width: 1000px;
+  width: 96%;
+  max-width: 1100px;
 }
 
 .footer-section {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 0.8rem 1.2rem;
-  min-width: 150px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 0.8rem 1rem;
+  min-width: 180px;
   flex: 1;
-  max-width: 250px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  max-width: 240px;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.footer-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
 .footer-section h3 {
   color: white;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.5px;
 }
 
 .footer-section p {
   color: white;
-  margin: 0.2rem 0;
+  margin: 0.3rem 0;
   font-weight: 500;
   font-size: 0.85rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  line-height: 1.4;
+}
+
+.footer-tagline {
+  font-style: italic;
+  opacity: 0.9;
+  font-size: 0.9rem !important;
+}
+
+.footer-contact {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 200, 100, 0.6);
+}
+
+.contact-item {
+  margin: 0.5rem 0;
+  padding: 0.6rem 0.7rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.contact-name {
+  font-weight: 700;
+  font-size: 0.9rem !important;
+  margin-bottom: 0.4rem !important;
+  color: #ffe4b5;
+}
+
+.contact-email {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: inline-block;
+  padding: 0.4rem 0.7rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.contact-email:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(5px);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .footer-section ul {
@@ -1553,19 +1631,19 @@ body {
   left: 0;
   right: 0;
   text-align: center;
-  padding: 0.6rem;
-  background: rgba(244, 228, 193, 0.7);
-  backdrop-filter: blur(5px);
+  padding: 0rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
   z-index: 3;
-  border-top: 2px solid rgba(139, 69, 19, 0.3);
+  border-top: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .footer-bottom p {
   color: white;
-  margin: 0.1rem 0;
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin: 0.3rem 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 /* Responsive Footer */
