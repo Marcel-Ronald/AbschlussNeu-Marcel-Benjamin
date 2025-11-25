@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import SharkList from "./components/SharkList";
 import OceanBackground from "./components/OceanBackground";
@@ -12,11 +13,11 @@ import "./styles.css";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activePage, setActivePage] = useState("home");
   const [filterType, setFilterType] = useState(null);
   const [sharks, setSharks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   // Lade Hai-Daten vom Backend
   useEffect(() => {
@@ -52,7 +53,7 @@ const App = () => {
   const handleSearch = (value) => {
     setSearchTerm(value);
     if (value.trim() !== "") {
-      setActivePage("gallery");
+      navigate("/gallery");
     }
   };
 
@@ -60,7 +61,7 @@ const App = () => {
   const applyFilter = (filter) => {
     setFilterType(filter);
     setSearchTerm("");
-    setActivePage("gallery");
+    navigate("/gallery");
   };
 
   // Top 10 gefährlichste Haie basierend auf Beschreibung
@@ -136,12 +137,24 @@ const App = () => {
         <div className="navbar-center">
           <h2 className="welcome">Willkommen im Hai Wiki</h2>
           <ul className="nav-links">
-            <li onClick={() => setActivePage("home")}>Startseite</li>
-            <li onClick={() => setActivePage("habitats")}>Lebensräume</li>
-            <li onClick={() => setActivePage("danger-zones")}>Gefahrenzonen</li>
-            <li onClick={() => setActivePage("about")}>Über Haie</li>
-            <li onClick={() => setActivePage("gallery")}>Galerie</li>
-            <li onClick={() => setActivePage("quiz")}>Quiz</li>
+            <li>
+              <Link to="/">Startseite</Link>
+            </li>
+            <li>
+              <Link to="/habitats">Lebensräume</Link>
+            </li>
+            <li>
+              <Link to="/danger-zones">Gefahrenzonen</Link>
+            </li>
+            <li>
+              <Link to="/about">Über Haie</Link>
+            </li>
+            <li>
+              <Link to="/gallery">Galerie</Link>
+            </li>
+            <li>
+              <Link to="/quiz">Quiz</Link>
+            </li>
           </ul>
         </div>
 
@@ -154,25 +167,25 @@ const App = () => {
       {loading && <div className="loading">Lade Hai-Daten...</div>}
       {error && <div className="error">{error}</div>}
 
-      {/* Page content */}
+      {/* Routes */}
       {!loading && !error && (
-        <>
-          {activePage === "home" && (
-            <HomePage
-              setActivePage={setActivePage}
-              sharks={sharks}
-              applyFilter={applyFilter}
-            />
-          )}
-          {activePage === "habitats" && <SharkHabitats />}
-          {activePage === "danger-zones" && <SharkDangerZones />}
-          {activePage === "about" && <SharkDetails />}
-          {activePage === "gallery" && <SharkList sharks={filteredSharks} />}
-          {activePage === "quiz" && <SharkQuiz />}
-        </>
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage sharks={sharks} applyFilter={applyFilter} />}
+          />
+          <Route path="/habitats" element={<SharkHabitats />} />
+          <Route path="/danger-zones" element={<SharkDangerZones />} />
+          <Route path="/about" element={<SharkDetails />} />
+          <Route
+            path="/gallery"
+            element={<SharkList sharks={filteredSharks} />}
+          />
+          <Route path="/quiz" element={<SharkQuiz />} />
+        </Routes>
       )}
 
-      <Footer setActivePage={setActivePage} />
+      <Footer />
     </div>
   );
 };
