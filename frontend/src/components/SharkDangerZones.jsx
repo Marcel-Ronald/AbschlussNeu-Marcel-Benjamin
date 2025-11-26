@@ -318,6 +318,160 @@ const SharkDangerZones = () => {
           </div>
         </div>
       )}
+
+      {/* Safety and Behavior Guidelines */}
+      <section className="safety-guidelines-section">
+        <h2 className="section-title">🦺 Sicherheit & Verhaltensregeln</h2>
+
+        <div className="guidelines-grid">
+          <div className="guideline-card emergency">
+            <div className="guideline-icon">🚨</div>
+            <h3>Notfall-Verhalten</h3>
+            <ul>
+              <li>
+                <strong>Ruhe bewahren:</strong> Hektische Bewegungen vermeiden
+              </li>
+              <li>
+                <strong>Blickkontakt halten:</strong> Hai niemals aus den Augen
+                verlieren
+              </li>
+              <li>
+                <strong>Vertikale Position:</strong> Aufrecht im Wasser bleiben
+              </li>
+              <li>
+                <strong>Langsam zurückziehen:</strong> Ruhig zum Ufer/Boot
+                bewegen
+              </li>
+              <li>
+                <strong>Nicht umdrehen:</strong> Hai weiter beobachten
+              </li>
+              <li>
+                <strong>Bei Angriff:</strong> Augen, Kiemen und Schnauze zielen
+              </li>
+              <li>
+                <strong>Sofort Wasser verlassen:</strong> Nach Sichtung schnell,
+                aber kontrolliert aus dem Wasser
+              </li>
+            </ul>
+          </div>
+
+          <div className="guideline-card prevention">
+            <div className="guideline-icon">🛡️</div>
+            <h3>Präventionsmaßnahmen</h3>
+            <ul>
+              <li>
+                <strong>Dämmerung meiden:</strong> Nicht bei
+                Sonnenauf-/untergang schwimmen
+              </li>
+              <li>
+                <strong>Gruppenaktivität:</strong> Niemals alleine schwimmen
+              </li>
+              <li>
+                <strong>Keine glänzenden Objekte:</strong> Schmuck und
+                reflektierende Gegenstände ablegen
+              </li>
+              <li>
+                <strong>Offene Wunden:</strong> Nicht mit Verletzungen ins
+                Wasser
+              </li>
+              <li>
+                <strong>Kontrastreiche Kleidung:</strong> Helle/dunkle Muster
+                vermeiden
+              </li>
+              <li>
+                <strong>Strömungen beachten:</strong> Nicht in Kanälen oder
+                Flussmündungen schwimmen
+              </li>
+              <li>
+                <strong>Warnschilder beachten:</strong> Lokale Warnungen ernst
+                nehmen
+              </li>
+            </ul>
+          </div>
+
+          <div className="guideline-card observation">
+            <div className="guideline-icon">👁️</div>
+            <h3>Haie sicher beobachten</h3>
+            <ul>
+              <li>
+                <strong>Geführte Touren:</strong> Nur mit erfahrenen Guides
+                tauchen
+              </li>
+              <li>
+                <strong>Käfigtauchen:</strong> Bei Weißen Haien immer geschützte
+                Käfige nutzen
+              </li>
+              <li>
+                <strong>Sicherheitsabstand:</strong> Mindestens 3-5 Meter
+                Abstand halten
+              </li>
+              <li>
+                <strong>Keine Berührung:</strong> Haie niemals anfassen oder
+                bedrängen
+              </li>
+              <li>
+                <strong>Respekt zeigen:</strong> Natürliches Verhalten nicht
+                stören
+              </li>
+              <li>
+                <strong>Beste Zeit:</strong> Morgens oder spätnachmittags für
+                beste Sicht
+              </li>
+              <li>
+                <strong>Ausrüstung prüfen:</strong> Equipment vor jedem
+                Tauchgang kontrollieren
+              </li>
+            </ul>
+          </div>
+
+          <div className="guideline-card equipment">
+            <div className="guideline-icon">⚙️</div>
+            <h3>Empfohlene Ausrüstung</h3>
+            <ul>
+              <li>
+                <strong>Hai-Schutznetz:</strong> In bekannten Gefahrenzonen
+                nutzen
+              </li>
+              <li>
+                <strong>Shark Shield:</strong> Elektronisches Abwehrgerät
+                erwägen
+              </li>
+              <li>
+                <strong>Wetsuit:</strong> Vollständige Körperbedeckung
+              </li>
+              <li>
+                <strong>Signalpfeife:</strong> Zur Alarmierung anderer
+              </li>
+              <li>
+                <strong>Tauchflagge:</strong> Sichtbarkeit für Boote erhöhen
+              </li>
+              <li>
+                <strong>Erste-Hilfe-Set:</strong> Wasserfestes Set dabei haben
+              </li>
+              <li>
+                <strong>Kommunikationsgerät:</strong> Wasserdichtes Funkgerät
+                oder Handy
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="important-notice">
+          <h3>⚠️ Wichtiger Hinweis</h3>
+          <p>
+            Hai-Angriffe sind äußerst selten. Jährlich ereignen sich weltweit
+            nur etwa 80 unprovozierte Angriffe, davon sind nur 5-10 tödlich. Das
+            Risiko ist geringer als bei vielen alltäglichen Aktivitäten. Respekt
+            und Vorsicht sind wichtiger als Angst.
+          </p>
+          <p className="stats-highlight">
+            <strong>Zum Vergleich:</strong> Die Wahrscheinlichkeit, von einem
+            Hai angegriffen zu werden, liegt bei etwa 1 zu 11,5 Millionen. Sie
+            haben eine 75-mal höhere Wahrscheinlichkeit, vom Blitz getroffen zu
+            werden.
+          </p>
+        </div>
+      </section>
     </div>
   );
 };
