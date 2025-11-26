@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import SharkList from "./components/SharkList";
 import OceanBackground from "./components/OceanBackground";

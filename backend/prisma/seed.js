@@ -742,21 +742,6 @@ async function main() {
       image: "/images/sharks/Bambushai.jpeg",
     },
     {
-      name: "Sägerochen",
-      scientific_name: "Pristis pristis",
-      average_length_m: 5.5,
-      average_weight_kg: 350,
-      lifespan_years: 30,
-      habitat_id: tropicalOcean.id,
-      diet_id: carnivore.id,
-      geburtsort: "Tropische und subtropische Küsten",
-      nahrung: "Fische, Krebstiere",
-      gefahr: "Gering - Säge kann gefährlich sein",
-      gewohnheiten:
-        "Nutzt Säge zum Wühlen und Betäuben, lebt am Boden, bedroht durch Überfischung",
-      image: "/images/sharks/Sägerochen.jpg",
-    },
-    {
       name: "Kragenhai",
       scientific_name: "Chlamydoselachus anguineus",
       average_length_m: 2.0,

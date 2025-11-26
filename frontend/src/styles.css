@@ -905,17 +905,23 @@ body {
 }
 
 .shark-card {
-  background-color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 26, 51, 0.95),
+    rgba(0, 61, 92, 0.85)
+  );
   border-radius: 15px;
   padding: 1.2rem;
   width: 100%;
   max-width: 250px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  border: 2px solid transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
 }
 
 .shark-card::before {
@@ -997,12 +1003,19 @@ body {
 }
 
 .habitat-card {
-  background: white;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 26, 51, 0.95),
+    rgba(0, 61, 92, 0.85)
+  );
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
 }
 
 .habitat-card:hover {
@@ -1056,14 +1069,14 @@ body {
 
 .habitat-name {
   font-size: 1.4rem;
-  color: #0077cc;
+  color: #5eb3f6;
   margin: 0 0 0.5rem 0;
   font-weight: bold;
 }
 
 .habitat-description {
   font-size: 1rem;
-  color: #555;
+  color: #e0e0e0;
   line-height: 1.6;
   margin: 0;
 }
@@ -1383,13 +1396,20 @@ body {
 }
 
 .danger-zone-card {
-  background: white;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 26, 51, 0.95),
+    rgba(0, 61, 92, 0.85)
+  );
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
 }
 
 .danger-zone-card:hover {
@@ -1455,21 +1475,21 @@ body {
 
 .zone-name {
   font-size: 1.5rem;
-  color: #d32f2f;
+  color: #ff6b6b;
   margin: 0 0 0.5rem 0;
   font-weight: bold;
 }
 
 .zone-location {
   font-size: 0.95rem;
-  color: #666;
+  color: #b8d4e8;
   margin: 0 0 1rem 0;
   font-weight: 500;
 }
 
 .zone-description {
   font-size: 1rem;
-  color: #555;
+  color: #e0e0e0;
   line-height: 1.6;
   margin: 0 0 1.5rem 0;
 }
@@ -1479,7 +1499,7 @@ body {
   flex-direction: column;
   gap: 0.8rem;
   padding-top: 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .stat-item {
@@ -1490,12 +1510,12 @@ body {
 
 .stat-label {
   font-weight: 600;
-  color: #666;
+  color: #b8d4e8;
   font-size: 0.9rem;
 }
 
 .stat-value {
-  color: #333;
+  color: #ffffff;
   font-size: 0.9rem;
   text-align: right;
   max-width: 60%;
@@ -1503,15 +1523,15 @@ body {
 
 /* Sighting Hotspots Grid */
 .hotspots-grid {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 26, 51, 0.95),
+    rgba(0, 61, 92, 0.85)
+  );
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   padding: 3rem;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.85),
-      rgba(255, 255, 255, 0.85)
-    ),
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%230077cc" width="1200" height="600"/><path fill="%2390c8e8" d="M100,150 L150,120 L200,130 L250,110 L300,140 L350,120 L400,150 L450,130 L500,160 L550,140 L600,150 L650,130 L700,160 L750,140 L800,150 L850,130 L900,160 L950,140 L1000,150 L1050,130 L1100,160 L1100,200 L1050,210 L1000,200 L950,220 L900,200 L850,210 L800,200 L750,220 L700,200 L650,210 L600,200 L550,220 L500,200 L450,210 L400,200 L350,220 L300,200 L250,210 L200,200 L150,220 L100,200 Z"/><path fill="%2360b0d8" d="M200,250 L250,230 L300,260 L350,240 L400,270 L450,250 L500,280 L550,260 L600,270 L650,250 L700,280 L750,260 L800,270 L850,250 L900,280 L950,260 L1000,270 L1000,320 L950,310 L900,330 L850,310 L800,330 L750,310 L700,330 L650,310 L600,330 L550,310 L500,330 L450,310 L400,330 L350,310 L300,330 L250,310 L200,330 Z"/><circle fill="%23ff6b35" cx="200" cy="180" r="8"/><circle fill="%23ff6b35" cx="450" cy="240" r="8"/><circle fill="%23ff6b35" cx="700" cy="200" r="8"/><circle fill="%23ff6b35" cx="900" cy="260" r="8"/><circle fill="%23ff6b35" cx="350" cy="290" r="8"/><circle fill="%23ff6b35" cx="600" cy="320" r="8"/></svg>');
   background-size: cover;
   background-position: center;
   border-radius: 20px;
@@ -1520,14 +1540,18 @@ body {
 }
 
 .hotspot-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 26, 51, 0.95),
+    rgba(0, 61, 92, 0.85)
+  );
   backdrop-filter: blur(10px);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-top: 4px solid #0077cc;
-  border: 2px solid rgba(0, 119, 204, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
 }
 
 .hotspot-card:hover {
@@ -1572,21 +1596,21 @@ body {
 
 .hotspot-name {
   font-size: 1.4rem;
-  color: #0077cc;
+  color: #5eb3f6;
   margin: 0 0 0.5rem 0;
   font-weight: bold;
 }
 
 .hotspot-location {
   font-size: 0.9rem;
-  color: #666;
+  color: #b8d4e8;
   margin: 0 0 1rem 0;
   font-weight: 500;
 }
 
 .hotspot-description {
   font-size: 1rem;
-  color: #555;
+  color: #e0e0e0;
   line-height: 1.6;
   margin: 0 0 1.5rem 0;
 }
@@ -1596,7 +1620,7 @@ body {
   flex-direction: column;
   gap: 0.8rem;
   padding-top: 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .info-row {
@@ -1610,7 +1634,7 @@ body {
 }
 
 .info-text {
-  color: #555;
+  color: #e0e0e0;
   font-size: 0.95rem;
   font-weight: 500;
 }
@@ -1739,16 +1763,25 @@ body {
 }
 
 .guideline-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 26, 51, 0.95),
+    rgba(0, 61, 92, 0.85)
+  );
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   padding: 2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   border-left: 5px solid;
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
   overflow: hidden;
+  color: white;
 }
 
 .guideline-card.emergency {
@@ -1781,7 +1814,7 @@ body {
 .guideline-card h3 {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -1793,7 +1826,7 @@ body {
 
 .guideline-card ul li {
   padding: 0.5rem 0;
-  color: #555;
+  color: #e0e0e0;
   line-height: 1.6;
   position: relative;
   padding-left: 1.5rem;
@@ -1806,12 +1839,12 @@ body {
   content: "▸";
   position: absolute;
   left: 0;
-  color: #0077cc;
+  color: #5eb3f6;
   font-weight: bold;
 }
 
 .guideline-card ul li strong {
-  color: #333;
+  color: #ffffff;
 }
 
 .important-notice {
@@ -2525,13 +2558,18 @@ body {
 }
 
 .featured-card {
-  background: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 26, 51, 0.95),
+    rgba(0, 61, 92, 0.85)
+  );
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 15px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .featured-card:hover {
