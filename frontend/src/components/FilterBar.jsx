@@ -1,22 +1,8 @@
 import React from "react";
+import { dangerousSharkNames } from "../utils/sharkFilters";
 
 const FilterBar = ({ sharks, filterType, onFilterChange }) => {
-  // Calculate counts for each filter type
-  const dangerousSharkNames = [
-    "Weißer Hai",
-    "Tigerhai",
-    "Bullenhai",
-    "Weißspitzen-Hochseehai",
-    "Galapagos-Hai",
-    "Grauer Riffhai",
-    "Hammerhai",
-    "Kurzflossen-Mako",
-    "Bronzehai",
-    "Schwarzspitzen-Riffhai",
-  ];
-
   const deepSeaSharks = ["Koboldhai", "Laternhai", "Sechskiemer", "Riesenmaul"];
-
   const filterSharks = ["Walhai", "Riesenhai", "Riesenmaul"];
 
   const counts = {
