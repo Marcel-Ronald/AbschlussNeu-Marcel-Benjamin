@@ -17,6 +17,7 @@ import SharkQuiz from "./components/SharkQuiz";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
 import FilterBar from "./components/FilterBar";
+import SharkComparison from "./components/SharkComparison";
 import "./styles.css";
 
 const App = () => {
@@ -167,6 +168,9 @@ const App = () => {
               <Link to="/gallery">Galerie</Link>
             </li>
             <li>
+              <Link to="/comparison">Vergleich</Link>
+            </li>
+            <li>
               <Link to="/quiz">Quiz</Link>
             </li>
           </ul>
@@ -204,6 +208,7 @@ const App = () => {
               </>
             }
           />
+          <Route path="/comparison" element={<SharkComparison />} />
           <Route path="/quiz" element={<SharkQuiz />} />
         </Routes>
       )}
