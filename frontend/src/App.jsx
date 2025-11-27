@@ -18,6 +18,7 @@ import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
 import FilterBar from "./components/FilterBar";
 import SharkComparison from "./components/SharkComparison";
+import { filterSharks } from "./utils/sharkFilters";
 import "./styles.css";
 
 const App = () => {
@@ -79,64 +80,8 @@ const App = () => {
     navigate("/gallery");
   };
 
-  // Top 10 gefährlichste Haie basierend auf Beschreibung
-  const dangerousSharkNames = [
-    "Weißer Hai",
-    "Tigerhai",
-    "Bullenhai",
-    "Weißspitzen-Hochseehai",
-    "Galapagos-Hai",
-    "Grauer Riffhai",
-    "Hammerhai",
-    "Kurzflossen-Mako",
-    "Bronzehai",
-    "Schwarzspitzen-Riffhai",
-  ];
-
   // Filtere Haie basierend auf Suchbegriff und Filter
-  let filteredSharks = sharks;
-
-  if (searchTerm) {
-    filteredSharks = filteredSharks.filter(
-      (shark) =>
-        shark.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        shark.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }
-
-  if (filterType === "dangerous") {
-    filteredSharks = sharks
-      .filter((shark) => dangerousSharkNames.includes(shark.name))
-      .slice(0, 10);
-  } else if (filterType === "large") {
-    filteredSharks = [...sharks]
-      .sort((a, b) => {
-        const sizeA = parseFloat(
-          a.description.match(/(\d+\.?\d*)\s*m/)?.[1] || 0
-        );
-        const sizeB = parseFloat(
-          b.description.match(/(\d+\.?\d*)\s*m/)?.[1] || 0
-        );
-        return sizeB - sizeA;
-      })
-      .slice(0, 10);
-  } else if (filterType === "deep") {
-    filteredSharks = sharks.filter(
-      (shark) =>
-        shark.description.toLowerCase().includes("tiefsee") ||
-        shark.name.includes("Koboldhai") ||
-        shark.name.includes("Laternhai") ||
-        shark.name.includes("Sechskiemer") ||
-        shark.name.includes("Riesenmaul")
-    );
-  } else if (filterType === "filter") {
-    filteredSharks = sharks.filter(
-      (shark) =>
-        shark.name.includes("Walhai") ||
-        shark.name.includes("Riesenhai") ||
-        shark.name.includes("Riesenmaul")
-    );
-  }
+  const filteredSharks = filterSharks(sharks, filterType, searchTerm);
 
   return (
     <div className="app">
