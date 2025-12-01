@@ -76,6 +76,13 @@ async function main() {
     },
   });
 
+  const bottomFeeder = await prisma.diet.create({
+    data: {
+      diet_type: "Bodenfresser",
+      prey_example: "Muscheln, Krabben, Weichtiere, Würmer",
+    },
+  });
+
   console.log("✅ Diäten erstellt");
 
   // Erstelle Haie mit vollständigen Informationen
@@ -562,7 +569,7 @@ async function main() {
       image: "/images/sharks/Laternhai.jpeg",
     },
     {
-      name: "Zittern-Hai",
+      name: "Hundshai",
       scientific_name: "Galeorhinus galeus",
       average_length_m: 2.1,
       average_weight_kg: 45,
@@ -574,7 +581,7 @@ async function main() {
       gefahr: "Gering - Normalerweise scheu",
       gewohnheiten:
         "Wandert saisonal, lebt in mittleren Tiefen, gesellig, aktiver Jäger",
-      image: "/images/sharks/Zittern-Hai.jpg",
+      image: "/images/sharks/Hundshai.jpg",
     },
     {
       name: "Karibischer Riffhai",
@@ -785,6 +792,51 @@ async function main() {
       gewohnheiten:
         "Ältestes Wirbeltier (500+ Jahre), extrem langsam, giftiges Fleisch, lebt in eiskaltem Wasser, fast blind",
       image: "/images/sharks/Grönland-Eishai.jpeg",
+    },
+    {
+      name: "Megalodon",
+      scientific_name: "Otodus megalodon",
+      average_length_m: 16.0,
+      average_weight_kg: 50000,
+      lifespan_years: 100,
+      habitat_id: temperateOcean.id,
+      diet_id: carnivore.id,
+      geburtsort: "Weltweit in prähistorischen Ozeanen (ausgestorben)",
+      nahrung: "Wale, große Fische, Meeressäuger, andere Haie",
+      gefahr: "Extrem - War der größte Raubfisch aller Zeiten (ausgestorben vor 3,6 Mio Jahren)",
+      gewohnheiten:
+        "Ausgestorben, größter Hai der je gelebt hat, Apex-Räuber, jagte große Wale, Beißkraft von bis zu 18 Tonnen",
+      image: "/images/sharks/megalodon.jpg",
+    },
+    {
+      name: "Zittern-Hai",
+      scientific_name: "Etmopterus spinax",
+      average_length_m: 0.6,
+      average_weight_kg: 1.5,
+      lifespan_years: 20,
+      habitat_id: deepOcean.id,
+      diet_id: bottomFeeder.id,
+      geburtsort: "Nordatlantik, Mittelmeer, Tiefsee",
+      nahrung: "Kleine Fische, Krebstiere, Tintenfische, Würmer",
+      gefahr: "Keine - Zu klein und lebt in Tiefsee",
+      gewohnheiten:
+        "Biolumineszenz (leuchtet im Dunkeln), lebt in 200-2000m Tiefe, sehr kleiner Hai, Stacheln an Rückenflossen",
+      image: "/images/sharks/Zittern-Hai.jpg",
+    },
+    {
+      name: "Großer Schwarzspitzenhai",
+      scientific_name: "Carcharhinus limbatus",
+      average_length_m: 2.5,
+      average_weight_kg: 65,
+      lifespan_years: 12,
+      habitat_id: tropicalOcean.id,
+      diet_id: fishEater.id,
+      geburtsort: "Tropische und subtropische Küstengewässer weltweit",
+      nahrung: "Sardinen, Heringe, andere kleine Fische, Rochen",
+      gefahr: "Gering bis Mittel - Kann neugierig sein, selten aggressiv",
+      gewohnheiten:
+        "Spektakuläre Sprünge aus dem Wasser, jagt in Schulen, wandert saisonal in wärmere Gewässer, sehr aktiv",
+      image: "/images/sharks/Schwarzspitzen-Riffhai.jpg",
     },
   ];
 
