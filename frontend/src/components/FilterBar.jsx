@@ -2,30 +2,32 @@ import React from "react";
 import { dangerousSharkNames } from "../utils/sharkFilters";
 
 const FilterBar = ({ sharks, filterType, onFilterChange }) => {
-  const deepSeaSharks = ["Koboldhai", "Laternhai", "Sechskiemer", "Riesenmaul"];
-  const filterSharks = ["Walhai", "Riesenhai", "Riesenmaul"];
-
+  // Berechne Anzahl für jeden Filter
   const counts = {
     all: sharks.length,
     dangerous: sharks.filter((shark) =>
       dangerousSharkNames.includes(shark.name)
     ).length,
-    large: sharks.length >= 10 ? 10 : sharks.length,
+    large: Math.min(sharks.length, 10),
     deep: sharks.filter(
       (shark) =>
         shark.description.toLowerCase().includes("tiefsee") ||
-        deepSeaSharks.some((name) => shark.name.includes(name))
+        shark.name.includes("Koboldhai") ||
+        shark.name.includes("Laternhai")
     ).length,
-    filter: sharks.filter((shark) =>
-      filterSharks.some((name) => shark.name.includes(name))
+    filter: sharks.filter(
+      (shark) =>
+        shark.name.includes("Walhai") ||
+        shark.name.includes("Riesenhai") ||
+        shark.name.includes("Riesenmaul")
     ).length,
   };
 
   const filters = [
-    { id: null, label: "Alle Haie", icon: "🦈", count: counts.all },
+    { id: null, label: "Alle", icon: "🦈", count: counts.all },
     {
       id: "dangerous",
-      label: "Gefährliche",
+      label: "Gefährlichste",
       icon: "⚠️",
       count: counts.dangerous,
     },
