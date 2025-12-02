@@ -880,7 +880,7 @@ async function main() {
   });
 
   console.log("✅ Beobachtungen erstellt");
-  console.log("🎉 Seeding erfolgreich abgeschlossen!");
+  console.log("🎉 Seeding erfolgreich abgeschlossen!!");
 }
 
 main()
