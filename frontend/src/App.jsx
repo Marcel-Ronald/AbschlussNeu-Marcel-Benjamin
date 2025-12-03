@@ -14,6 +14,7 @@ import SharkHabitats from "./components/SharkHabitats";
 import SharkDangerZones from "./components/SharkDangerZones";
 import SharkDetails from "./components/SharkDetails";
 import SharkQuiz from "./components/SharkQuiz";
+import Impressum from "./components/Impressum";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
 import FilterBar from "./components/FilterBar";
@@ -155,6 +156,7 @@ const App = () => {
           />
           <Route path="/comparison" element={<SharkComparison />} />
           <Route path="/quiz" element={<SharkQuiz />} />
+          <Route path="/impressum" element={<Impressum />} />
         </Routes>
       )}
 

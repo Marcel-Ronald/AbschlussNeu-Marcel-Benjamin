@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = ({ setActivePage }) => {
   return (
@@ -51,6 +52,11 @@ const Footer = ({ setActivePage }) => {
 
         <div className="footer-bottom">
           <p>&copy; 2025 Hai Wiki - Alle Rechte vorbehalten</p>
+          <p>
+            <Link to="/impressum" className="impressum-link">
+              📜 Impressum
+            </Link>
+          </p>
           <p>🦈 Schütze unsere Ozeane 🌊</p>
         </div>
       </div>
