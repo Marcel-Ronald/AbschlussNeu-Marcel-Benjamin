@@ -2132,8 +2132,11 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  text-align: center;
-  padding: 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   z-index: 3;
@@ -2142,7 +2145,7 @@ body {
 
 .footer-bottom p {
   color: white;
-  margin: 0.3rem 0;
+  margin: 0;
   font-weight: 700;
   font-size: 0.95rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
