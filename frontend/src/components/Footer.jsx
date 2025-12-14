@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 const Footer = ({ setActivePage }) => {
+  const { t } = useLanguage();
   return (
     <footer className="footer">
       <div className="beach-scene">
@@ -14,17 +16,25 @@ const Footer = ({ setActivePage }) => {
         <div className="footer-content">
           <div className="footer-section">
             <h3>🦈 Hai Wiki</h3>
-            <p>Deine Quelle für Hai-Informationen</p>
-            <p className="footer-tagline">
-              Entdecke die faszinierende Welt der Haie
+            <p>
+              {t(
+                "Deine Quelle für Hai-Informationen",
+                "Your source for shark information"
+              )}
             </p>
-            <p>🔍 Über 48 Hai-Arten</p>
-            <p>📚 Detaillierte Infos</p>
-            <p>🗺️ Lebensräume weltweit</p>
+            <p className="footer-tagline">
+              {t(
+                "Entdecke die faszinierende Welt der Haie",
+                "Discover the fascinating world of sharks"
+              )}
+            </p>
+            <p>🔍 {t("Über 48 Hai-Arten", "Over 48 shark species")}</p>
+            <p>📚 {t("Detaillierte Infos", "Detailed information")}</p>
+            <p>🗺️ {t("Lebensräume weltweit", "Habitats worldwide")}</p>
           </div>
 
           <div className="footer-section footer-contact">
-            <h3>📬 Kontakt</h3>
+            <h3>📬 {t("Kontakt", "Contact")}</h3>
             <div className="contact-item">
               <p className="contact-name">👤 Marcel-Ronald Rajenkowski</p>
               <a href="mailto:Rajenkowski@gmail.com" className="contact-email">
@@ -41,23 +51,26 @@ const Footer = ({ setActivePage }) => {
 
           <div className="footer-section">
             <h3>🌊 Info</h3>
-            <p>Ozean Forschung 2025</p>
-            <p>Bildung & Naturschutz</p>
-            <p>🐋 Meeresbiologie</p>
-            <p>🌍 Umweltschutz</p>
-            <p>📖 Wissensvermittlung</p>
-            <p>🦈 Hai-Schutzprojekte</p>
+            <p>{t("Ozean Forschung 2025", "Ocean Research 2025")}</p>
+            <p>{t("Bildung & Naturschutz", "Education & Conservation")}</p>
+            <p>🐋 {t("Meeresbiologie", "Marine Biology")}</p>
+            <p>🌍 {t("Umweltschutz", "Environmental Protection")}</p>
+            <p>📖 {t("Wissensvermittlung", "Knowledge Transfer")}</p>
+            <p>🦈 {t("Hai-Schutzprojekte", "Shark Conservation Projects")}</p>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; 2025 Hai Wiki - Alle Rechte vorbehalten</p>
+          <p>
+            &copy; 2025 Hai Wiki -{" "}
+            {t("Alle Rechte vorbehalten", "All rights reserved")}
+          </p>
           <p>
             <Link to="/impressum" className="impressum-link">
-              📜 Impressum
+              📜 {t("Impressum", "Imprint")}
             </Link>
           </p>
-          <p>🦈 Schütze unsere Ozeane 🌊</p>
+          <p>🦈 {t("Schütze unsere Ozeane", "Protect our oceans")} 🌊</p>
         </div>
       </div>
     </footer>

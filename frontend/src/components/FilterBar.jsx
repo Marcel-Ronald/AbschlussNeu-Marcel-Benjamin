@@ -1,7 +1,10 @@
 import React from "react";
 import { dangerousSharkNames } from "../utils/sharkFilters";
+import { useLanguage } from "../context/LanguageContext";
 
 const FilterBar = ({ sharks, filterType, onFilterChange }) => {
+  const { t } = useLanguage();
+
   // Berechne Anzahl für jeden Filter
   const counts = {
     all: sharks.length,
@@ -24,16 +27,31 @@ const FilterBar = ({ sharks, filterType, onFilterChange }) => {
   };
 
   const filters = [
-    { id: null, label: "Alle", icon: "🦈", count: counts.all },
+    { id: null, label: t("Alle", "All"), icon: "🦈", count: counts.all },
     {
       id: "dangerous",
-      label: "Gefährlichste",
+      label: t("Gefährlichste", "Most Dangerous"),
       icon: "⚠️",
       count: counts.dangerous,
     },
-    { id: "large", label: "Größte", icon: "📏", count: counts.large },
-    { id: "deep", label: "Tiefsee", icon: "🌊", count: counts.deep },
-    { id: "filter", label: "Filtrierer", icon: "🍽️", count: counts.filter },
+    {
+      id: "large",
+      label: t("Größte", "Largest"),
+      icon: "📏",
+      count: counts.large,
+    },
+    {
+      id: "deep",
+      label: t("Tiefsee", "Deep Sea"),
+      icon: "🌊",
+      count: counts.deep,
+    },
+    {
+      id: "filter",
+      label: t("Filtrierer", "Filter Feeders"),
+      icon: "🍽️",
+      count: counts.filter,
+    },
   ];
 
   return (

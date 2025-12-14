@@ -19,7 +19,9 @@ import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
 import FilterBar from "./components/FilterBar";
 import SharkComparison from "./components/SharkComparison";
+import Shark3DViewer from "./components/Shark3DViewer";
 import { filterSharks } from "./utils/sharkFilters";
+import { useLanguage } from "./context/LanguageContext";
 import "./styles.css";
 
 const App = () => {
@@ -27,6 +29,7 @@ const App = () => {
   const [filterType, setFilterType] = useState(null);
   const [sharks, setSharks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { language, toggleLanguage, t } = useLanguage();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -92,29 +95,43 @@ const App = () => {
       {/* Navigation */}
       <nav className="navbar">
         <div className="navbar-left">
-          <h1 className="logo">Shark Wiki 🦈</h1>
+          <div className="logo-container">
+            <h1 className="logo">Shark Wiki 🦈</h1>
+            <button
+              className="language-toggle"
+              onClick={toggleLanguage}
+              aria-label={t("Sprache wechseln", "Switch language")}
+            >
+              {language === "de" ? "🇬🇧 EN" : "🇩🇪 DE"}
+            </button>
+          </div>
         </div>
 
         <div className="navbar-center">
           <h2 className="welcome"></h2>
           <ul className="nav-links">
             <li>
-              <Link to="/">Startseite</Link>
+              <Link to="/">{t("Startseite", "Home")}</Link>
             </li>
             <li>
-              <Link to="/about">Über Haie</Link>
+              <Link to="/about">{t("Über Haie", "About Sharks")}</Link>
             </li>
             <li>
-              <Link to="/habitats">Lebensräume</Link>
+              <Link to="/habitats">{t("Lebensräume", "Habitats")}</Link>
             </li>
             <li>
-              <Link to="/danger-zones">Gefahrenzonen</Link>
+              <Link to="/danger-zones">
+                {t("Gefahrenzonen", "Danger Zones")}
+              </Link>
             </li>
             <li>
-              <Link to="/gallery">Galerie</Link>
+              <Link to="/gallery">{t("Galerie", "Gallery")}</Link>
             </li>
             <li>
-              <Link to="/comparison">Vergleich</Link>
+              <Link to="/comparison">{t("Vergleich", "Comparison")}</Link>
+            </li>
+            <li>
+              <Link to="/3d-viewer">{t("3D Haie", "3D Sharks")}</Link>
             </li>
             <li>
               <Link to="/quiz">Quiz</Link>
@@ -128,7 +145,11 @@ const App = () => {
       </nav>
 
       {/* Fehler- und Ladestatus */}
-      {loading && <div className="loading">Lade Hai-Daten...</div>}
+      {loading && (
+        <div className="loading">
+          {t("Lade Hai-Daten...", "Loading shark data...")}
+        </div>
+      )}
       {error && <div className="error">{error}</div>}
 
       {/* Routes */}
@@ -155,6 +176,7 @@ const App = () => {
             }
           />
           <Route path="/comparison" element={<SharkComparison />} />
+          <Route path="/3d-viewer" element={<Shark3DViewer />} />
           <Route path="/quiz" element={<SharkQuiz />} />
           <Route path="/impressum" element={<Impressum />} />
         </Routes>

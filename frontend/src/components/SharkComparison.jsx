@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 const SharkComparison = () => {
+  const { t } = useLanguage();
   const [sharks, setSharks] = useState([]);
   const [selectedShark1, setSelectedShark1] = useState(null);
   const [selectedShark2, setSelectedShark2] = useState(null);
@@ -60,7 +62,9 @@ const SharkComparison = () => {
     const humanHeight = 1.8 * scale;
     return (
       <div className="size-visualization">
-        <h3>📏 Größenvergleich mit Mensch</h3>
+        <h3>
+          📏 {t("Größenvergleich mit Mensch", "Size Comparison with Human")}
+        </h3>
 
         {/* View Mode Controls */}
         <div className="view-mode-controls">
@@ -70,19 +74,19 @@ const SharkComparison = () => {
             }`}
             onClick={() => setViewMode("side-by-side")}
           >
-            Nebeneinander
+            {t("Nebeneinander", "Side by Side")}
           </button>
           <button
             className={`view-btn ${viewMode === "overlay" ? "active" : ""}`}
             onClick={() => setViewMode("overlay")}
           >
-            Überlagert
+            {t("Überlagert", "Overlay")}
           </button>
           <button
             className={`view-btn ${viewMode === "stacked" ? "active" : ""}`}
             onClick={() => setViewMode("stacked")}
           >
-            Gestapelt
+            {t("Gestapelt", "Stacked")}
           </button>
         </div>
 
@@ -679,13 +683,20 @@ const SharkComparison = () => {
 
   return (
     <div className="comparison-page">
-      <h1 className="page-title">⚖️ Hai-Vergleichstool</h1>
-      <p className="page-subtitle">Vergleiche zwei Haie direkt miteinander</p>
+      <h1 className="page-title">
+        ⚖️ {t("Hai-Vergleichstool", "Shark Comparison Tool")}
+      </h1>
+      <p className="page-subtitle">
+        {t(
+          "Vergleiche zwei Haie direkt miteinander",
+          "Compare two sharks side by side"
+        )}
+      </p>
 
       {/* Shark Selection */}
       <div className="shark-selection-grid">
         <div className="selection-panel">
-          <h3>Hai 1 wählen</h3>
+          <h3>{t("Hai 1 wählen", "Select Shark 1")}</h3>
           <select
             value={selectedShark1?.id || ""}
             onChange={(e) => {
@@ -696,7 +707,9 @@ const SharkComparison = () => {
             }}
             className="shark-selector"
           >
-            <option value="">-- Hai auswählen --</option>
+            <option value="">
+              {t("-- Hai auswählen --", "-- Select Shark --")}
+            </option>
             {sharks.map((shark) => (
               <option key={shark.id} value={shark.id}>
                 {shark.name}
@@ -720,7 +733,7 @@ const SharkComparison = () => {
         </div>
 
         <div className="selection-panel">
-          <h3>Hai 2 wählen</h3>
+          <h3>{t("Hai 2 wählen", "Select Shark 2")}</h3>
           <select
             value={selectedShark2?.id || ""}
             onChange={(e) => {
@@ -731,7 +744,9 @@ const SharkComparison = () => {
             }}
             className="shark-selector"
           >
-            <option value="">-- Hai auswählen --</option>
+            <option value="">
+              {t("-- Hai auswählen --", "-- Select Shark --")}
+            </option>
             {sharks.map((shark) => (
               <option key={shark.id} value={shark.id}>
                 {shark.name}
@@ -760,11 +775,11 @@ const SharkComparison = () => {
               onClick={() => setShowVisualization(!showVisualization)}
             >
               {showVisualization
-                ? "📊 Tabelle anzeigen"
-                : "📏 Größenvergleich anzeigen"}
+                ? t("📊 Tabelle anzeigen", "📊 Show Table")
+                : t("📏 Größenvergleich anzeigen", "📏 Show Size Comparison")}
             </button>
             <button className="btn-reset" onClick={resetComparison}>
-              🔄 Neu vergleichen
+              {t("🔄 Neu vergleichen", "🔄 New Comparison")}
             </button>
           </div>
 
@@ -775,16 +790,16 @@ const SharkComparison = () => {
               <table>
                 <thead>
                   <tr>
-                    <th>Eigenschaft</th>
+                    <th>{t("Eigenschaft", "Property")}</th>
                     <th className="shark1-col">{selectedShark1.name}</th>
                     <th className="shark2-col">{selectedShark2.name}</th>
-                    <th>Gewinner</th>
+                    <th>{t("Gewinner", "Winner")}</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>
-                      <strong>📏 Länge</strong>
+                      <strong>📏 {t("Länge", "Length")}</strong>
                     </td>
                     <td
                       className={
@@ -813,12 +828,12 @@ const SharkComparison = () => {
                         : selectedShark2.average_length_m >
                           selectedShark1.average_length_m
                         ? "🔴 " + selectedShark2.name
-                        : "🟡 Gleichstand"}
+                        : "🟡 " + t("Gleichstand", "Tie")}
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <strong>⚖️ Gewicht</strong>
+                      <strong>⚖️ {t("Gewicht", "Weight")}</strong>
                     </td>
                     <td
                       className={
@@ -847,12 +862,12 @@ const SharkComparison = () => {
                         : selectedShark2.average_weight_kg >
                           selectedShark1.average_weight_kg
                         ? "🔴 " + selectedShark2.name
-                        : "🟡 Gleichstand"}
+                        : "🟡 " + t("Gleichstand", "Tie")}
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <strong>🎂 Lebenserwartung</strong>
+                      <strong>🎂 {t("Lebenserwartung", "Lifespan")}</strong>
                     </td>
                     <td
                       className={
@@ -862,7 +877,7 @@ const SharkComparison = () => {
                           : ""
                       }
                     >
-                      {selectedShark1.lifespan_years} Jahre
+                      {selectedShark1.lifespan_years} {t("Jahre", "years")}
                     </td>
                     <td
                       className={
@@ -872,7 +887,7 @@ const SharkComparison = () => {
                           : ""
                       }
                     >
-                      {selectedShark2.lifespan_years} Jahre
+                      {selectedShark2.lifespan_years} {t("Jahre", "years")}
                     </td>
                     <td className="winner-cell">
                       {selectedShark1.lifespan_years >
@@ -881,12 +896,12 @@ const SharkComparison = () => {
                         : selectedShark2.lifespan_years >
                           selectedShark1.lifespan_years
                         ? "🔴 " + selectedShark2.name
-                        : "🟡 Gleichstand"}
+                        : "🟡 " + t("Gleichstand", "Tie")}
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <strong>⚠️ Gefahr</strong>
+                      <strong>⚠️ {t("Gefahr", "Danger")}</strong>
                     </td>
                     <td
                       style={{ color: getDangerColor(selectedShark1.gefahr) }}
@@ -902,7 +917,7 @@ const SharkComparison = () => {
                   </tr>
                   <tr>
                     <td>
-                      <strong>🍽️ Nahrung</strong>
+                      <strong>🍽️ {t("Nahrung", "Diet")}</strong>
                     </td>
                     <td>{selectedShark1.nahrung}</td>
                     <td>{selectedShark2.nahrung}</td>
@@ -910,7 +925,7 @@ const SharkComparison = () => {
                   </tr>
                   <tr>
                     <td>
-                      <strong>🌍 Geburtsort</strong>
+                      <strong>🌍 {t("Geburtsort", "Birthplace")}</strong>
                     </td>
                     <td>{selectedShark1.geburtsort}</td>
                     <td>{selectedShark2.geburtsort}</td>
@@ -918,7 +933,7 @@ const SharkComparison = () => {
                   </tr>
                   <tr>
                     <td>
-                      <strong>🏊 Gewohnheiten</strong>
+                      <strong>🏊 {t("Gewohnheiten", "Habits")}</strong>
                     </td>
                     <td>{selectedShark1.gewohnheiten}</td>
                     <td>{selectedShark2.gewohnheiten}</td>
@@ -934,10 +949,17 @@ const SharkComparison = () => {
       {!selectedShark1 && !selectedShark2 && (
         <div className="empty-state">
           <div className="empty-icon">🦈</div>
-          <h3>Wähle zwei Haie zum Vergleichen</h3>
+          <h3>
+            {t(
+              "Wähle zwei Haie zum Vergleichen",
+              "Select two sharks to compare"
+            )}
+          </h3>
           <p>
-            Nutze die Dropdown-Menüs oben, um zwei Haie auszuwählen und direkt
-            zu vergleichen.
+            {t(
+              "Nutze die Dropdown-Menüs oben, um zwei Haie auszuwählen und direkt zu vergleichen.",
+              "Use the dropdown menus above to select two sharks and compare them directly."
+            )}
           </p>
         </div>
       )}

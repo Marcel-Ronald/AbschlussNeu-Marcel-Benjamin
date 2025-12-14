@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 const SharkDangerZones = () => {
+  const { t } = useLanguage();
   const [selectedZone, setSelectedZone] = useState(null);
 
   const dangerZones = [
@@ -163,12 +165,17 @@ const SharkDangerZones = () => {
       {/* Danger Zones Section */}
       <section className="zones-section">
         <h2 className="section-title">
-          ⚠️ Hai-Gefahrenzonen & Angriffs-Hotspots
+          ⚠️{" "}
+          {t(
+            "Hai-Gefahrenzonen & Angriffs-Hotspots",
+            "Shark Danger Zones & Attack Hotspots"
+          )}
         </h2>
         <p className="section-intro">
-          Diese Orte haben die höchsten aufgezeichneten Hai-Begegnungen und
-          Angriffe. Üben Sie äußerste Vorsicht beim Schwimmen oder Surfen in
-          diesen Gebieten.
+          {t(
+            "Diese Orte haben die höchsten aufgezeichneten Hai-Begegnungen und Angriffe. Üben Sie äußerste Vorsicht beim Schwimmen oder Surfen in diesen Gebieten.",
+            "These locations have the highest recorded shark encounters and attacks. Exercise extreme caution when swimming or surfing in these areas."
+          )}
         </p>
 
         <div className="danger-zones-grid">
@@ -185,7 +192,7 @@ const SharkDangerZones = () => {
                 className="danger-badge"
                 style={{ background: getDangerColor(zone.dangerLevel) }}
               >
-                {zone.dangerLevel} Risiko
+                {zone.dangerLevel} {t("Risiko", "Risk")}
               </div>
 
               <div className="zone-image-container">
@@ -321,12 +328,14 @@ const SharkDangerZones = () => {
 
       {/* Safety and Behavior Guidelines */}
       <section className="safety-guidelines-section">
-        <h2 className="section-title">🦺 Sicherheit & Verhaltensregeln</h2>
+        <h2 className="section-title">
+          🦺 {t("Sicherheit & Verhaltensregeln", "Safety & Behavior Rules")}
+        </h2>
 
         <div className="guidelines-grid">
           <div className="guideline-card emergency">
             <div className="guideline-icon">🚨</div>
-            <h3>Notfall-Verhalten</h3>
+            <h3>{t("Notfall-Verhalten", "Emergency Behavior")}</h3>
             <ul>
               <li>
                 <strong>Ruhe bewahren:</strong> Hektische Bewegungen vermeiden

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 const SharkHabitats = () => {
+  const { t, language } = useLanguage();
   const [selectedHabitat, setSelectedHabitat] = useState(null);
 
   const habitats = [
@@ -104,11 +106,15 @@ const SharkHabitats = () => {
 
   return (
     <div className="habitats-container">
-      <h2 className="habitats-title">🌊 Hai-Lebensräume auf der Welt</h2>
+      <h2 className="habitats-title">
+        🌊{" "}
+        {t("Hai-Lebensräume auf der Welt", "Shark Habitats Around the World")}
+      </h2>
       <p className="habitats-intro">
-        Entdecke die wunderschönen Inseln und Küstenregionen, in denen Haie
-        leben und in ihrem natürlichen Lebensraum gedeihen. Klicke auf eine
-        Karte für detaillierte Informationen.
+        {t(
+          "Entdecke die wunderschönen Inseln und Küstenregionen, in denen Haie leben und in ihrem natürlichen Lebensraum gedeihen. Klicke auf eine Karte für detaillierte Informationen.",
+          "Discover the beautiful islands and coastal regions where sharks live and thrive in their natural habitat. Click on a card for detailed information."
+        )}
       </p>
 
       <div className="habitats-grid">
@@ -196,7 +202,9 @@ const SharkHabitats = () => {
 
               <div className="habitat-detail-right">
                 <div className="detail-section">
-                  <h3>📖 Über diesen Lebensraum</h3>
+                  <h3>
+                    📖 {t("Über diesen Lebensraum", "About This Habitat")}
+                  </h3>
                   <p>{selectedHabitat.detailedInfo}</p>
                 </div>
 
@@ -204,28 +212,36 @@ const SharkHabitats = () => {
                   <div className="detail-info-item">
                     <span className="detail-icon">🌡️</span>
                     <div>
-                      <strong>Klima</strong>
+                      <strong>{t("Klima", "Climate")}</strong>
                       <p>{selectedHabitat.climate}</p>
                     </div>
                   </div>
                   <div className="detail-info-item">
                     <span className="detail-icon">🌊</span>
                     <div>
-                      <strong>Tiefe</strong>
+                      <strong>{t("Tiefe", "Depth")}</strong>
                       <p>{selectedHabitat.depth}</p>
                     </div>
                   </div>
                   <div className="detail-info-item">
                     <span className="detail-icon">📅</span>
                     <div>
-                      <strong>Beste Reisezeit</strong>
+                      <strong>
+                        {t("Beste Reisezeit", "Best Time to Visit")}
+                      </strong>
                       <p>{selectedHabitat.bestTime}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="detail-section">
-                  <h3>🦈 Haiarten in diesem Gebiet</h3>
+                  <h3>
+                    🦈{" "}
+                    {t(
+                      "Haiarten in diesem Gebiet",
+                      "Shark Species in This Area"
+                    )}
+                  </h3>
                   <div className="shark-species-list">
                     {selectedHabitat.sharkTypes
                       .split(",")
