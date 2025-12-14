@@ -49,12 +49,20 @@ const App = () => {
           throw new Error("Fehler beim Laden der Hai-Daten");
         }
         const data = await response.json();
-        // Formatiere die Daten für die bestehende Struktur
+        // Behalte alle Daten vom Backend
         const formattedSharks = data.map((shark) => ({
           id: shark.id,
           name: shark.name,
-          description: `${shark.scientific_name}. ${shark.nahrung}. Durchschnittliche Länge: ${shark.average_length_m}m, Gewicht: ${shark.average_weight_kg}kg.`,
+          scientific_name: shark.scientific_name,
+          average_length_m: parseFloat(shark.average_length_m),
+          average_weight_kg: parseFloat(shark.average_weight_kg),
+          lifespan_years: parseInt(shark.lifespan_years),
+          description: `${shark.scientific_name}. ${shark.nahrung}. Durchschnittliche Länge: ${shark.average_length_m}m, Gewicht: ${shark.average_weight_kg}kg, Lebensdauer: ${shark.lifespan_years} Jahre.`,
           image: shark.image,
+          nahrung: shark.nahrung,
+          gefahr: shark.gefahr,
+          gewohnheiten: shark.gewohnheiten,
+          geburtsort: shark.geburtsort,
         }));
         setSharks(formattedSharks);
         setError(null);

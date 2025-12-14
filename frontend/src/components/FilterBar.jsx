@@ -1,74 +1,67 @@
-import React from "react";
-import { dangerousSharkNames } from "../utils/sharkFilters";
-import { useLanguage } from "../context/LanguageContext";
+import React, { useState } from "react";
 
 const FilterBar = ({ sharks, filterType, onFilterChange }) => {
-  const { t } = useLanguage();
+  const [showSortMenu, setShowSortMenu] = useState(false);
 
-  // Berechne Anzahl für jeden Filter
-  const counts = {
-    all: sharks.length,
-    dangerous: sharks.filter((shark) =>
-      dangerousSharkNames.includes(shark.name)
-    ).length,
-    large: Math.min(sharks.length, 10),
-    deep: sharks.filter(
-      (shark) =>
-        shark.description.toLowerCase().includes("tiefsee") ||
-        shark.name.includes("Koboldhai") ||
-        shark.name.includes("Laternhai")
-    ).length,
-    filter: sharks.filter(
-      (shark) =>
-        shark.name.includes("Walhai") ||
-        shark.name.includes("Riesenhai") ||
-        shark.name.includes("Riesenmaul")
-    ).length,
-  };
-
-  const filters = [
-    { id: null, label: t("Alle", "All"), icon: "🦈", count: counts.all },
-    {
-      id: "dangerous",
-      label: t("Gefährlichste", "Most Dangerous"),
-      icon: "⚠️",
-      count: counts.dangerous,
-    },
-    {
-      id: "large",
-      label: t("Größte", "Largest"),
-      icon: "📏",
-      count: counts.large,
-    },
-    {
-      id: "deep",
-      label: t("Tiefsee", "Deep Sea"),
-      icon: "🌊",
-      count: counts.deep,
-    },
-    {
-      id: "filter",
-      label: t("Filtrierer", "Filter Feeders"),
-      icon: "🍽️",
-      count: counts.filter,
-    },
+  const sortOptions = [
+    { id: "name-asc", label: "Name A-Z", icon: "🔤" },
+    { id: "name-desc", label: "Name Z-A", icon: "🔤" },
+    { id: "danger-desc", label: "Gefährlichkeit (hoch → niedrig)", icon: "⚠️" },
+    { id: "danger-asc", label: "Gefährlichkeit (niedrig → hoch)", icon: "⚠️" },
+    { id: "length-desc", label: "Länge (groß → klein)", icon: "📏" },
+    { id: "length-asc", label: "Länge (klein → groß)", icon: "📏" },
+    { id: "weight-desc", label: "Gewicht (schwer → leicht)", icon: "⚖️" },
+    { id: "weight-asc", label: "Gewicht (leicht → schwer)", icon: "⚖️" },
+    { id: "lifespan-desc", label: "Lebensdauer (lang → kurz)", icon: "⏳" },
+    { id: "lifespan-asc", label: "Lebensdauer (kurz → lang)", icon: "⏳" },
   ];
+
+  const isSortOption = sortOptions.some(opt => opt.id === filterType);
+  const activeSortLabel = sortOptions.find(opt => opt.id === filterType)?.label || "Sortieren";
 
   return (
     <div className="filter-bar">
-      {filters.map((filter) => (
+      {/* Alle Button */}
+      <button
+        className={`filter-button ${
+          filterType === null || !isSortOption ? "active" : ""
+        }`}
+        onClick={() => onFilterChange(null)}
+      >
+        <span className="filter-icon">🦈</span>
+        <span className="filter-label">Alle Haie</span>
+        <span className="filter-badge">{sharks.length}</span>
+      </button>
+      
+      {/* Sortier-Dropdown */}
+      <div className="sort-dropdown">
         <button
-          key={filter.id || "all"}
-          className={`filter-button ${
-            filterType === filter.id ? "active" : ""
-          }`}
-          onClick={() => onFilterChange(filter.id)}
+          className={`filter-button sort-button ${isSortOption ? "active" : ""}`}
+          onClick={() => setShowSortMenu(!showSortMenu)}
         >
-          <span className="filter-icon">{filter.icon}</span>
-          <span className="filter-label">{filter.label}</span>
-          <span className="filter-badge">{filter.count}</span>
+          <span className="filter-icon">📊</span>
+          <span className="filter-label">{activeSortLabel}</span>
+          <span className="dropdown-arrow">{showSortMenu ? "▲" : "▼"}</span>
         </button>
-      ))}
+        
+        {showSortMenu && (
+          <div className="sort-menu">
+            {sortOptions.map((option) => (
+              <button
+                key={option.id}
+                className={`sort-option ${filterType === option.id ? "active" : ""}`}
+                onClick={() => {
+                  onFilterChange(option.id);
+                  setShowSortMenu(false);
+                }}
+              >
+                <span className="filter-icon">{option.icon}</span>
+                <span>{option.label}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

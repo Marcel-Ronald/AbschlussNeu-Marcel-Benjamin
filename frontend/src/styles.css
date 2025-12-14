@@ -805,6 +805,86 @@ body {
   color: white;
 }
 
+/* Sort Dropdown */
+.sort-dropdown {
+  position: relative;
+}
+
+.sort-button {
+  min-width: 180px;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #0077cc, #005599);
+  color: white;
+  border-color: transparent;
+}
+
+.sort-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 119, 204, 0.5);
+  background: linear-gradient(135deg, #0088dd, #0066aa);
+}
+
+.dropdown-arrow {
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.sort-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: linear-gradient(135deg, #0077cc, #005599);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 119, 204, 0.4);
+  z-index: 1000;
+  min-width: 240px;
+  overflow: hidden;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sort-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  color: white;
+  text-align: left;
+}
+
+.sort-option:hover {
+  background: rgba(255, 255, 255, 0.15);
+  padding-left: 1.5rem;
+}
+
+.sort-option.active {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+  color: white;
+}
+
+.sort-option .filter-icon {
+  font-size: 1.1rem;
+}
+
 @media (max-width: 768px) {
   .filter-bar {
     gap: 0.5rem;
@@ -822,6 +902,22 @@ body {
 
   .filter-icon {
     font-size: 1.5rem;
+  }
+  
+  .sort-button .filter-label {
+    display: inline;
+    font-size: 0.85rem;
+  }
+  
+  .sort-menu {
+    right: auto;
+    left: 0;
+    min-width: 200px;
+  }
+  
+  .sort-option {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -2169,8 +2265,11 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  text-align: center;
-  padding: 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   z-index: 3;
@@ -2179,7 +2278,7 @@ body {
 
 .footer-bottom p {
   color: white;
-  margin: 0.3rem 0;
+  margin: 0;
   font-weight: 700;
   font-size: 0.95rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
