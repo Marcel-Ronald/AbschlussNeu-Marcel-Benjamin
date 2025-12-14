@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 const SharkQuiz = () => {
+  const { t } = useLanguage();
   const [showNameInput, setShowNameInput] = useState(true);
   const [playerName, setPlayerName] = useState("");
   const [quizStarted, setQuizStarted] = useState(false);
@@ -1018,10 +1020,12 @@ const SharkQuiz = () => {
     return (
       <div className="quiz-container">
         <div className="quiz-start">
-          <h1 className="quiz-start-title">🎯 Hai-Quiz</h1>
+          <h1 className="quiz-start-title">🎯 {t("Hai-Quiz", "Shark Quiz")}</h1>
           <p className="quiz-start-description">
-            Teste dein Wissen über Haie! Beantworte 15 Fragen und zeige, wie gut
-            du dich auskennst.
+            {t(
+              "Teste dein Wissen über Haie! Beantworte 15 Fragen und zeige, wie gut du dich auskennst.",
+              "Test your knowledge about sharks! Answer 15 questions and show how well you know them."
+            )}
           </p>
 
           {!showLeaderboard ? (
@@ -1029,14 +1033,17 @@ const SharkQuiz = () => {
               <form onSubmit={handleNameSubmit} className="name-input-form">
                 <div className="name-input-group">
                   <label htmlFor="playerName" className="name-input-label">
-                    Dein Name:
+                    {t("Dein Name:", "Your Name:")}
                   </label>
                   <input
                     type="text"
                     id="playerName"
                     value={playerName}
                     onChange={(e) => setPlayerName(e.target.value)}
-                    placeholder="Gib deinen Namen ein..."
+                    placeholder={t(
+                      "Gib deinen Namen ein...",
+                      "Enter your name..."
+                    )}
                     className="name-input-field"
                     maxLength={20}
                     required
@@ -1047,22 +1054,24 @@ const SharkQuiz = () => {
                   className="btn-quiz-start"
                   disabled={!playerName.trim()}
                 >
-                  Quiz starten
+                  {t("Quiz starten", "Start Quiz")}
                 </button>
               </form>
 
               <div className="quiz-info">
                 <div className="quiz-info-item">
                   <span className="quiz-info-icon">📝</span>
-                  <span>30 Fragen</span>
+                  <span>{t("30 Fragen", "30 Questions")}</span>
                 </div>
                 <div className="quiz-info-item">
                   <span className="quiz-info-icon">⏱️</span>
-                  <span>15 Sekunden pro Frage</span>
+                  <span>
+                    {t("15 Sekunden pro Frage", "15 seconds per question")}
+                  </span>
                 </div>
                 <div className="quiz-info-item">
                   <span className="quiz-info-icon">🏆</span>
-                  <span>Rangliste</span>
+                  <span>{t("Rangliste", "Leaderboard")}</span>
                 </div>
               </div>
 
@@ -1070,15 +1079,20 @@ const SharkQuiz = () => {
                 className="btn-show-leaderboard"
                 onClick={() => setShowLeaderboard(true)}
               >
-                📊 Rangliste anzeigen
+                📊 {t("Rangliste anzeigen", "Show Leaderboard")}
               </button>
             </>
           ) : (
             <div className="leaderboard-container">
-              <h2 className="leaderboard-title">🏆 Rangliste</h2>
+              <h2 className="leaderboard-title">
+                🏆 {t("Rangliste", "Leaderboard")}
+              </h2>
               {leaderboard.length === 0 ? (
                 <p className="leaderboard-empty">
-                  Noch keine Einträge vorhanden. Sei der Erste!
+                  {t(
+                    "Noch keine Einträge vorhanden. Sei der Erste!",
+                    "No entries yet. Be the first!"
+                  )}
                 </p>
               ) : (
                 <div className="leaderboard-list">
@@ -1122,7 +1136,7 @@ const SharkQuiz = () => {
                 onClick={() => setShowLeaderboard(false)}
                 style={{ marginTop: "2rem" }}
               >
-                Zurück
+                {t("Zurück", "Back")}
               </button>
             </div>
           )}
@@ -1135,32 +1149,39 @@ const SharkQuiz = () => {
     return (
       <div className="quiz-container">
         <div className="quiz-start">
-          <h1 className="quiz-start-title">Bereit, {playerName}? 🦈</h1>
+          <h1 className="quiz-start-title">
+            {t("Bereit", "Ready")}, {playerName}? 🦈
+          </h1>
           <p className="quiz-start-description">
-            Gleich geht's los! Beantworte 15 zufällige Fragen über Haie.
+            {t(
+              "Gleich geht's los! Beantworte 15 zufällige Fragen über Haie.",
+              "Let's go! Answer 15 random questions about sharks."
+            )}
           </p>
           <div className="quiz-info">
             <div className="quiz-info-item">
               <span className="quiz-info-icon">📝</span>
-              <span>30 Fragen</span>
+              <span>{t("30 Fragen", "30 Questions")}</span>
             </div>
             <div className="quiz-info-item">
               <span className="quiz-info-icon">⏱️</span>
-              <span>15 Sekunden pro Frage</span>
+              <span>
+                {t("15 Sekunden pro Frage", "15 seconds per question")}
+              </span>
             </div>
             <div className="quiz-info-item">
               <span className="quiz-info-icon">🏆</span>
-              <span>Sofortiges Feedback</span>
+              <span>{t("Sofortiges Feedback", "Instant Feedback")}</span>
             </div>
           </div>
           <button className="btn-quiz-start" onClick={startQuiz}>
-            Jetzt starten!
+            {t("Jetzt starten!", "Start now!")}
           </button>
           <button
             className="btn-change-name"
             onClick={() => setShowNameInput(true)}
           >
-            Namen ändern
+            {t("Namen ändern", "Change name")}
           </button>
         </div>
       </div>
@@ -1173,17 +1194,28 @@ const SharkQuiz = () => {
     let resultEmoji = "";
 
     if (percentage >= 90) {
-      resultMessage = "Ausgezeichnet! Du bist ein echter Hai-Experte! 🎓";
+      resultMessage = t(
+        "Ausgezeichnet! Du bist ein echter Hai-Experte! 🎓",
+        "Excellent! You're a true shark expert! 🎓"
+      );
       resultEmoji = "🏆";
     } else if (percentage >= 70) {
-      resultMessage = "Sehr gut! Du kennst dich super mit Haien aus! 👏";
+      resultMessage = t(
+        "Sehr gut! Du kennst dich super mit Haien aus! 👏",
+        "Very good! You know sharks really well! 👏"
+      );
       resultEmoji = "⭐";
     } else if (percentage >= 50) {
-      resultMessage = "Gut gemacht! Du hast solides Hai-Wissen! 👍";
+      resultMessage = t(
+        "Gut gemacht! Du hast solides Hai-Wissen! 👍",
+        "Well done! You have solid shark knowledge! 👍"
+      );
       resultEmoji = "✨";
     } else {
-      resultMessage =
-        "Nicht schlecht! Es gibt noch viel zu lernen über Haie! 📚";
+      resultMessage = t(
+        "Nicht schlecht! Es gibt noch viel zu lernen über Haie! 📚",
+        "Not bad! There's still much to learn about sharks! 📚"
+      );
       resultEmoji = "💪";
     }
 
@@ -1191,11 +1223,15 @@ const SharkQuiz = () => {
       <div className="quiz-container">
         <div className="quiz-result">
           <div className="result-emoji">{resultEmoji}</div>
-          <h1 className="result-title">Quiz beendet!</h1>
+          <h1 className="result-title">
+            {t("Quiz beendet!", "Quiz Completed!")}
+          </h1>
           <div className="result-score">
             <div className="score-circle">
               <div className="score-number">{score}</div>
-              <div className="score-total">von {shuffledQuestions.length}</div>
+              <div className="score-total">
+                {t("von", "of")} {shuffledQuestions.length}
+              </div>
             </div>
             <div className="score-percentage">{percentage}%</div>
           </div>
@@ -1203,13 +1239,13 @@ const SharkQuiz = () => {
 
           <div className="player-result-info">
             <p className="player-name-result">
-              🎮 Spieler: <strong>{playerName}</strong>
+              🎮 {t("Spieler:", "Player:")} <strong>{playerName}</strong>
             </p>
           </div>
 
           <div className="result-buttons">
             <button className="btn-quiz-restart" onClick={restartQuiz}>
-              Nochmal versuchen
+              {t("Nochmal versuchen", "Try again")}
             </button>
             <button
               className="btn-show-leaderboard"
@@ -1219,12 +1255,12 @@ const SharkQuiz = () => {
                 setShowLeaderboard(true);
               }}
             >
-              📊 Rangliste ansehen
+              📊 {t("Rangliste ansehen", "View Leaderboard")}
             </button>
           </div>
 
           <div className="result-answers">
-            <h2>Deine Antworten:</h2>
+            <h2>{t("Deine Antworten:", "Your Answers:")}</h2>
             {userAnswers.map((answer, index) => (
               <div
                 key={index}
@@ -1233,13 +1269,15 @@ const SharkQuiz = () => {
                 }`}
               >
                 <div className="answer-review-header">
-                  <span className="answer-number">Frage {index + 1}</span>
+                  <span className="answer-number">
+                    {t("Frage", "Question")} {index + 1}
+                  </span>
                   <span className="answer-status">
                     {answer.isCorrect
-                      ? "✓ Richtig"
+                      ? t("✓ Richtig", "✓ Correct")
                       : answer.timeUp
-                      ? "⏱️ Zeit abgelaufen"
-                      : "✗ Falsch"}
+                      ? t("⏱️ Zeit abgelaufen", "⏱️ Time's up")
+                      : t("✗ Falsch", "✗ Wrong")}
                   </span>
                 </div>
                 <div className="answer-question">{answer.question}</div>
@@ -1247,17 +1285,20 @@ const SharkQuiz = () => {
                   <div className="answer-correction">
                     {!answer.timeUp && answer.userAnswer !== null && (
                       <span className="your-answer">
-                        Deine Antwort:{" "}
+                        {t("Deine Antwort:", "Your answer:")}{" "}
                         {shuffledQuestions[index].options[answer.userAnswer]}
                       </span>
                     )}
                     {answer.timeUp && (
                       <span className="your-answer timeout">
-                        Keine Antwort - Zeit abgelaufen
+                        {t(
+                          "Keine Antwort - Zeit abgelaufen",
+                          "No answer - Time's up"
+                        )}
                       </span>
                     )}
                     <span className="correct-answer">
-                      Richtig:{" "}
+                      {t("Richtig:", "Correct:")}{" "}
                       {shuffledQuestions[index].options[answer.correctAnswer]}
                     </span>
                   </div>
@@ -1284,7 +1325,8 @@ const SharkQuiz = () => {
       <div className="quiz-content">
         <div className="quiz-header">
           <span className="quiz-question-number">
-            Frage {currentQuestion + 1} von {shuffledQuestions.length}
+            {t("Frage", "Question")} {currentQuestion + 1} {t("von", "of")}{" "}
+            {shuffledQuestions.length}
           </span>
           <div className="quiz-timer-container">
             <div

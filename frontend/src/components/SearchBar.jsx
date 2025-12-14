@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
+  const { t } = useLanguage();
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [allSharks, setAllSharks] = useState([]);
@@ -91,7 +93,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
     <div className="search-container" ref={searchRef}>
       <input
         type="text"
-        placeholder="Suche nach Haien..."
+        placeholder={t("Suche nach Haien...", "Search for sharks...")}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyPress={handleKeyPress}

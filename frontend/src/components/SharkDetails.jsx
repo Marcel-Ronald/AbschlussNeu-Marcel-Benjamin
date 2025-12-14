@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 const SharkDetails = () => {
+  const { t } = useLanguage();
   const [sharkInfo, setSharkInfo] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,7 +29,9 @@ const SharkDetails = () => {
   if (loading) {
     return (
       <div className="shark-details-container">
-        <h1>Lade Hai-Informationen...</h1>
+        <h1>
+          {t("Lade Hai-Informationen...", "Loading shark information...")}
+        </h1>
       </div>
     );
   }
@@ -35,7 +39,9 @@ const SharkDetails = () => {
   if (error) {
     return (
       <div className="shark-details-container">
-        <h1>Fehler: {error}</h1>
+        <h1>
+          {t("Fehler", "Error")}: {error}
+        </h1>
       </div>
     );
   }
@@ -526,11 +532,17 @@ const SharkDetails = () => {
 
   return (
     <div className="shark-details-container">
-      <h1 className="details-title">Über Haie - Detaillierte Informationen</h1>
+      <h1 className="details-title">
+        {t(
+          "Über Haie - Detaillierte Informationen",
+          "About Sharks - Detailed Information"
+        )}
+      </h1>
       <p className="details-intro">
-        Entdecke faszinierende Details über alle 48 Haiarten in unserer
-        Sammlung. Erfahre mehr über ihre Herkunft, Ernährung, Gefährlichkeit und
-        Verhaltensweisen.
+        {t(
+          "Entdecke faszinierende Details über alle 48 Haiarten in unserer Sammlung. Erfahre mehr über ihre Herkunft, Ernährung, Gefährlichkeit und Verhaltensweisen.",
+          "Discover fascinating details about all 48 shark species in our collection. Learn more about their origin, diet, danger level and behaviors."
+        )}
       </p>
 
       <div className="shark-info-grid">
@@ -552,22 +564,22 @@ const SharkDetails = () => {
 
             <div className="shark-info-content">
               <div className="info-section">
-                <h3>🌍 Geburtsort</h3>
+                <h3>🌍 {t("Geburtsort", "Birthplace")}</h3>
                 <p>{shark.geburtsort}</p>
               </div>
 
               <div className="info-section">
-                <h3>🍽️ Nahrung</h3>
+                <h3>🍽️ {t("Nahrung", "Diet")}</h3>
                 <p>{shark.nahrung}</p>
               </div>
 
               <div className="info-section">
-                <h3>⚠️ Gefährlichkeit</h3>
+                <h3>⚠️ {t("Gefährlichkeit", "Danger Level")}</h3>
                 <p>{shark.gefahr}</p>
               </div>
 
               <div className="info-section">
-                <h3>🦈 Gewohnheiten</h3>
+                <h3>🦈 {t("Gewohnheiten", "Habits")}</h3>
                 <p>{shark.gewohnheiten}</p>
               </div>
             </div>

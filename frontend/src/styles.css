@@ -486,6 +486,13 @@ body {
   gap: 1rem;
 }
 
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
 /* Zurück-Button */
 .back-button {
   padding: 0.6rem 1.2rem;
@@ -518,6 +525,36 @@ body {
   flex: 1 1 150px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Language Toggle Button */
+.language-toggle {
+  padding: 0.4rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.language-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 170, 255, 0.3);
+}
+
+.language-toggle:active {
+  transform: translateY(0);
 }
 
 .logo {
@@ -5290,5 +5327,387 @@ body {
 
   .impressum-person {
     padding: 1.5rem;
+  }
+}
+
+/* ===== 3D HAI VIEWER PAGE ===== */
+.shark-3d-viewer-page {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Header Section */
+.viewer-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(0, 50, 100, 0.6);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.viewer-title {
+  font-size: 3.5rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(0, 170, 255, 0.5), 0 0 40px rgba(0, 170, 255, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 20px rgba(0, 170, 255, 0.5),
+      0 0 40px rgba(0, 170, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(0, 170, 255, 0.8),
+      0 0 60px rgba(0, 170, 255, 0.5);
+  }
+}
+
+.viewer-subtitle {
+  font-size: 1.3rem;
+  color: #a0d8f1;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Shark Selection Tabs */
+.shark-3d-tabs {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.shark-3d-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: rgba(0, 50, 100, 0.6);
+  border: 3px solid rgba(0, 170, 255, 0.3);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  min-width: 180px;
+}
+
+.shark-3d-tab:hover {
+  background: rgba(0, 80, 150, 0.8);
+  border-color: rgba(0, 170, 255, 0.6);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.4);
+}
+
+.shark-3d-tab.active {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 119, 204, 0.9),
+    rgba(0, 170, 255, 0.9)
+  );
+  border-color: #00aaff;
+  box-shadow: 0 10px 40px rgba(0, 170, 255, 0.6);
+  transform: translateY(-5px);
+}
+
+.tab-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.tab-size {
+  font-size: 1rem;
+  color: #a0d8f1;
+}
+
+/* Main Viewer Container */
+.viewer-container {
+  margin-bottom: 3rem;
+}
+
+.viewer-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* 3D Model Frame */
+.model-frame {
+  position: relative;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(0, 170, 255, 0.3);
+}
+
+.threejs-canvas {
+  width: 100%;
+  height: 800px;
+  border-radius: 15px;
+  display: block;
+  background: linear-gradient(to bottom, #001f3f, #003366, #004080);
+}
+
+.model-controls-hint {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 170, 255, 0.1);
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+
+.model-controls-hint span {
+  font-size: 0.95rem;
+  color: #a0d8f1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Info Panel */
+.viewer-info-panel {
+  background: rgba(0, 50, 100, 0.7);
+  padding: 2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(0, 170, 255, 0.3);
+  height: fit-content;
+  position: sticky;
+  top: 120px;
+}
+
+.info-header h2 {
+  font-size: 2.2rem;
+  color: #00aaff;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 15px rgba(0, 170, 255, 0.6);
+}
+
+.scientific-name {
+  font-size: 1.1rem;
+  color: #a0d8f1;
+  font-style: italic;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.info-description {
+  color: #ffffff;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border-left: 4px solid #00aaff;
+}
+
+/* Stats */
+.info-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(0, 170, 255, 0.15);
+  border-radius: 12px;
+  border: 2px solid rgba(0, 170, 255, 0.3);
+}
+
+.stat-icon {
+  font-size: 2rem;
+}
+
+.stat-item strong {
+  display: block;
+  color: #00aaff;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.stat-item p {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Interaction Tips */
+.interaction-tips {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(0, 170, 255, 0.2);
+}
+
+.interaction-tips h3 {
+  color: #00aaff;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+}
+
+.interaction-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.interaction-tips li {
+  color: #ffffff;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.interaction-tips li:last-child {
+  border-bottom: none;
+}
+
+.interaction-tips li::before {
+  content: "▸ ";
+  color: #00aaff;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+/* Feature Cards */
+.viewer-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.feature-card {
+  background: rgba(0, 50, 100, 0.6);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(0, 170, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.3);
+  border-color: rgba(0, 170, 255, 0.5);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  color: #00aaff;
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.feature-card p {
+  color: #a0d8f1;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Technology Info */
+.tech-info {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(0, 170, 255, 0.2);
+}
+
+.tech-info h3 {
+  color: #00aaff;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.tech-info p {
+  color: #a0d8f1;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .viewer-main {
+    grid-template-columns: 1fr;
+  }
+
+  .viewer-info-panel {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .viewer-title {
+    font-size: 2.5rem;
+  }
+
+  .viewer-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .shark-3d-tabs {
+    gap: 1rem;
+  }
+
+  .shark-3d-tab {
+    min-width: 150px;
+    padding: 1rem 1.5rem;
+  }
+
+  .tab-name {
+    font-size: 1.1rem;
+  }
+
+  .threejs-canvas {
+    height: 500px;
+  }
+
+  .model-controls-hint {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .info-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .viewer-features {
+    grid-template-columns: 1fr;
   }
 }
