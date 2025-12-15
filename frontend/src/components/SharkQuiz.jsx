@@ -1023,8 +1023,8 @@ const SharkQuiz = () => {
           <h1 className="quiz-start-title">🎯 {t("Hai-Quiz", "Shark Quiz")}</h1>
           <p className="quiz-start-description">
             {t(
-              "Teste dein Wissen über Haie! Beantworte 15 Fragen und zeige, wie gut du dich auskennst.",
-              "Test your knowledge about sharks! Answer 15 questions and show how well you know them."
+              "Teste dein Wissen über Haie! Beantworte 30 Fragen und zeige, wie gut du dich auskennst.",
+              "Test your knowledge about sharks! Answer 30 questions and show how well you know them."
             )}
           </p>
 

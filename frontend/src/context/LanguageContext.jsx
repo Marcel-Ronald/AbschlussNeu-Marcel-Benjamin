@@ -12,10 +12,16 @@ export const useLanguage = () => {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState("de"); // 'de' oder 'en'
+  const [language, setLanguage] = useState(() => {
+    return localStorage.getItem('language') || 'de';
+  }); // 'de' oder 'en'
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "de" ? "en" : "de"));
+    setLanguage((prev) => {
+      const newLang = prev === "de" ? "en" : "de";
+      localStorage.setItem('language', newLang);
+      return newLang;
+    });
   };
 
   // Einfache Übersetzungsfunktion für direkte Texte

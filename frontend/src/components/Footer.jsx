@@ -28,7 +28,7 @@ const Footer = ({ setActivePage }) => {
                 "Discover the fascinating world of sharks"
               )}
             </p>
-            <p>🔍 {t("Über 48 Hai-Arten", "Over 48 shark species")}</p>
+            <p>🔍 {t("Über 50 Hai-Arten", "Over 50 shark species")}</p>
             <p>📚 {t("Detaillierte Infos", "Detailed information")}</p>
             <p>🗺️ {t("Lebensräume weltweit", "Habitats worldwide")}</p>
           </div>

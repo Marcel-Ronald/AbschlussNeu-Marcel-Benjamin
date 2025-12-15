@@ -35,7 +35,7 @@ const HomePage = ({ sharks, applyFilter }) => {
 
   const statistics = [
     {
-      number: 48,
+      number: 50,
       label: t(
         "Haiarten in unserer Datenbank",
         "Shark species in our database"
@@ -532,8 +532,8 @@ const HomePage = ({ sharks, applyFilter }) => {
           </h2>
           <p>
             {t(
-              "Tauche ein in unsere umfangreiche Datenbank mit 48 faszinierenden Haiarten",
-              "Dive into our comprehensive database with 48 fascinating shark species"
+              "Tauche ein in unsere umfangreiche Datenbank mit 50 faszinierenden Haiarten",
+              "Dive into our comprehensive database with 50 fascinating shark species"
             )}
           </p>
           <button className="btn-cta" onClick={() => navigate("/gallery")}>

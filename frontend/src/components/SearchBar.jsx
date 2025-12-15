@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [allSharks, setAllSharks] = useState([]);
@@ -12,7 +12,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
     // Load all sharks for autocomplete
     const fetchSharks = async () => {
       try {
-        const response = await fetch("http://localhost:3001/sharks/all");
+        const response = await fetch(`http://localhost:3001/sharks/all`);
         if (response.ok) {
           const data = await response.json();
           setAllSharks(data.map((shark) => shark.name));

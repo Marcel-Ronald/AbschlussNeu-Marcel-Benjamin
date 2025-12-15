@@ -542,6 +542,7 @@ const createSpotPattern = () => {
 };
 
 const Shark3DViewer = () => {
+  const { t } = useLanguage();
   const [selectedShark, setSelectedShark] = useState("white");
 
   const sharks3D = [

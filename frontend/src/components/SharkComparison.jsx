@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 const SharkComparison = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [sharks, setSharks] = useState([]);
   const [selectedShark1, setSelectedShark1] = useState(null);
   const [selectedShark2, setSelectedShark2] = useState(null);
@@ -13,7 +13,7 @@ const SharkComparison = () => {
   useEffect(() => {
     const fetchSharks = async () => {
       try {
-        const response = await fetch("http://localhost:3001/sharks/all");
+        const response = await fetch(`http://localhost:3001/sharks/all`);
         if (response.ok) {
           const data = await response.json();
           setSharks(data);
@@ -24,6 +24,16 @@ const SharkComparison = () => {
     };
     fetchSharks();
   }, []);
+
+  // Formatiere Sharks basierend auf aktueller Sprache
+  const formattedSharks = sharks.map((shark) => ({
+    ...shark,
+    name: language === 'en' && shark.name_en ? shark.name_en : shark.name,
+    geburtsort: language === 'en' && shark.geburtsort_en ? shark.geburtsort_en : shark.geburtsort,
+    nahrung: language === 'en' && shark.nahrung_en ? shark.nahrung_en : shark.nahrung,
+    gefahr: language === 'en' && shark.gefahr_en ? shark.gefahr_en : shark.gefahr,
+    gewohnheiten: language === 'en' && shark.gewohnheiten_en ? shark.gewohnheiten_en : shark.gewohnheiten,
+  }));
 
   const getDangerLevel = (danger) => {
     if (!danger) return "Unbekannt";
@@ -49,6 +59,8 @@ const SharkComparison = () => {
     setSelectedShark2(null);
     setShowVisualization(false);
   };
+
+  // Verwende formattedSharks für Anzeige
 
   const renderSizeVisualization = () => {
     if (!selectedShark1 && !selectedShark2) return null;
@@ -700,7 +712,7 @@ const SharkComparison = () => {
           <select
             value={selectedShark1?.id || ""}
             onChange={(e) => {
-              const shark = sharks.find(
+              const shark = formattedSharks.find(
                 (s) => s.id === parseInt(e.target.value)
               );
               setSelectedShark1(shark);
@@ -710,7 +722,7 @@ const SharkComparison = () => {
             <option value="">
               {t("-- Hai auswählen --", "-- Select Shark --")}
             </option>
-            {sharks.map((shark) => (
+            {formattedSharks.map((shark) => (
               <option key={shark.id} value={shark.id}>
                 {shark.name}
               </option>
@@ -737,7 +749,7 @@ const SharkComparison = () => {
           <select
             value={selectedShark2?.id || ""}
             onChange={(e) => {
-              const shark = sharks.find(
+              const shark = formattedSharks.find(
                 (s) => s.id === parseInt(e.target.value)
               );
               setSelectedShark2(shark);

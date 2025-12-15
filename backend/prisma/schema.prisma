@@ -25,6 +25,7 @@ model Habitat {
 model Shark {
   id                Int           @id @default(autoincrement())
   name              String        @db.VarChar(100)
+  name_en           String?       @db.VarChar(100)
   scientific_name   String        @db.VarChar(150)
   average_length_m  Decimal       @db.Decimal(10, 2)
   average_weight_kg Decimal       @db.Decimal(10, 2)
@@ -36,6 +37,10 @@ model Shark {
   gefahr            String        @db.VarChar(255)
   gewohnheiten      String        @db.Text
   image             String        @db.VarChar(255)
+  geburtsort_en     String?       @db.Text
+  nahrung_en        String?       @db.Text
+  gefahr_en         String?       @db.VarChar(255)
+  gewohnheiten_en   String?       @db.Text
   habitat           Habitat       @relation(fields: [habitat_id], references: [id], map: "sharks_habitat_id_foreign")
   diet              Diet          @relation(fields: [diet_id], references: [id], map: "sharks_diet_id_foreign")
   observations      Observation[]

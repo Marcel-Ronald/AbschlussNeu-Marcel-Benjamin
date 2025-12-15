@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 const SharkDetails = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [sharkInfo, setSharkInfo] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,7 +10,8 @@ const SharkDetails = () => {
   useEffect(() => {
     const fetchSharks = async () => {
       try {
-        const response = await fetch("http://localhost:3001/sharks/all");
+        setLoading(true);
+        const response = await fetch(`http://localhost:3001/sharks/all`);
         if (!response.ok) {
           throw new Error("Fehler beim Laden der Hai-Daten");
         }
@@ -25,6 +26,16 @@ const SharkDetails = () => {
 
     fetchSharks();
   }, []);
+
+  // Formatiere Shark-Daten basierend auf aktueller Sprache
+  const formattedSharkInfo = sharkInfo.map((shark) => ({
+    ...shark,
+    name: language === 'en' && shark.name_en ? shark.name_en : shark.name,
+    geburtsort: language === 'en' && shark.geburtsort_en ? shark.geburtsort_en : shark.geburtsort,
+    nahrung: language === 'en' && shark.nahrung_en ? shark.nahrung_en : shark.nahrung,
+    gefahr: language === 'en' && shark.gefahr_en ? shark.gefahr_en : shark.gefahr,
+    gewohnheiten: language === 'en' && shark.gewohnheiten_en ? shark.gewohnheiten_en : shark.gewohnheiten,
+  }));
 
   if (loading) {
     return (
@@ -546,7 +557,7 @@ const SharkDetails = () => {
       </p>
 
       <div className="shark-info-grid">
-        {sharkInfo.map((shark) => (
+        {formattedSharkInfo.map((shark) => (
           <div key={shark.id} className="shark-info-card">
             <div className="shark-info-header">
               <img
@@ -564,7 +575,7 @@ const SharkDetails = () => {
 
             <div className="shark-info-content">
               <div className="info-section">
-                <h3>🌍 {t("Geburtsort", "Birthplace")}</h3>
+                <h3>🌍 {t("Geburtsort", "Origin")}</h3>
                 <p>{shark.geburtsort}</p>
               </div>
 

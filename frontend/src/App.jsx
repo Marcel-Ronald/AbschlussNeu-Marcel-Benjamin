@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   Routes,
   Route,
@@ -39,32 +39,17 @@ const App = () => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Lade Hai-Daten vom Backend
+  // Lade Hai-Daten vom Backend (nur einmal)
   useEffect(() => {
     const fetchSharks = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:3001/sharks/all");
+        const response = await fetch(`http://localhost:3001/sharks/all`);
         if (!response.ok) {
           throw new Error("Fehler beim Laden der Hai-Daten");
         }
         const data = await response.json();
-        // Behalte alle Daten vom Backend
-        const formattedSharks = data.map((shark) => ({
-          id: shark.id,
-          name: shark.name,
-          scientific_name: shark.scientific_name,
-          average_length_m: parseFloat(shark.average_length_m),
-          average_weight_kg: parseFloat(shark.average_weight_kg),
-          lifespan_years: parseInt(shark.lifespan_years),
-          description: `${shark.scientific_name}. ${shark.nahrung}. Durchschnittliche Länge: ${shark.average_length_m}m, Gewicht: ${shark.average_weight_kg}kg, Lebensdauer: ${shark.lifespan_years} Jahre.`,
-          image: shark.image,
-          nahrung: shark.nahrung,
-          gefahr: shark.gefahr,
-          gewohnheiten: shark.gewohnheiten,
-          geburtsort: shark.geburtsort,
-        }));
-        setSharks(formattedSharks);
+        setSharks(data);
         setError(null);
       } catch (err) {
         console.error("Fehler beim Laden der Hai-Daten:", err);
@@ -76,6 +61,22 @@ const App = () => {
 
     fetchSharks();
   }, []);
+
+  // Formatiere Sharks basierend auf aktueller Sprache (ohne Reload)
+  const formattedSharks = useMemo(() => sharks.map((shark) => ({
+    id: shark.id,
+    name: language === 'en' && shark.name_en ? shark.name_en : shark.name,
+    scientific_name: shark.scientific_name,
+    average_length_m: parseFloat(shark.average_length_m),
+    average_weight_kg: parseFloat(shark.average_weight_kg),
+    lifespan_years: parseInt(shark.lifespan_years),
+    description: `${shark.scientific_name}. ${language === 'en' && shark.nahrung_en ? shark.nahrung_en : shark.nahrung}. ${language === 'de' ? 'Durchschnittliche Länge' : 'Average length'}: ${shark.average_length_m}m, ${language === 'de' ? 'Gewicht' : 'Weight'}: ${shark.average_weight_kg}kg, ${language === 'de' ? 'Lebensdauer' : 'Lifespan'}: ${shark.lifespan_years} ${language === 'de' ? 'Jahre' : 'years'}.`,
+    image: shark.image,
+    nahrung: language === 'en' && shark.nahrung_en ? shark.nahrung_en : shark.nahrung,
+    gefahr: language === 'en' && shark.gefahr_en ? shark.gefahr_en : shark.gefahr,
+    gewohnheiten: language === 'en' && shark.gewohnheiten_en ? shark.gewohnheiten_en : shark.gewohnheiten,
+    geburtsort: language === 'en' && shark.geburtsort_en ? shark.geburtsort_en : shark.geburtsort,
+  })), [sharks, language]);
 
   // Automatisch zur Gallery wechseln wenn etwas gesucht wird
   const handleSearch = (value) => {
@@ -93,7 +94,7 @@ const App = () => {
   };
 
   // Filtere Haie basierend auf Suchbegriff und Filter
-  const filteredSharks = filterSharks(sharks, filterType, searchTerm);
+  const filteredSharks = filterSharks(formattedSharks, filterType, searchTerm);
 
   return (
     <div className="app">
